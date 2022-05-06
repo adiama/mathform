@@ -4,6 +4,11 @@
   "description": "A collection of mathematical formulas, constants and algorithms",
   "author": "Alexandros Diamantonis <asdiamantonis@gmail.com>",
   "license": "MIT",
+  "homepage": "https://github.com/adiama/mathform#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adiama/mathform.git"
+  },
   "type": "module",
   "main": "./src/index.js",
   "module": "./dist/mathform.js",

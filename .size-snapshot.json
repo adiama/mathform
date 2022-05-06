@@ -1,0 +1,47 @@
+{
+  "math-lib-js.bundle-iife.js": {
+    "bundled": 8629,
+    "minified": 2327,
+    "gzipped": 1144
+  },
+  "math-lib-js.min-umd.js": {
+    "bundled": 8932,
+    "minified": 2559,
+    "gzipped": 1265
+  },
+  "math-lib-js.umd.js": {
+    "bundled": 8918,
+    "minified": 2540,
+    "gzipped": 1257
+  },
+  "math-lib-js.js": {
+    "bundled": 8629,
+    "minified": 2327,
+    "gzipped": 1144
+  },
+  "math-lib.js": {
+    "bundled": 8629,
+    "minified": 2327,
+    "gzipped": 1144
+  },
+  "math-lib.umd.js": {
+    "bundled": 8918,
+    "minified": 2540,
+    "gzipped": 1257
+  },
+  "mathlib.js": {
+    "bundled": 8777,
+    "minified": 2327,
+    "gzipped": 1144
+  },
+  "mathlib.umd.js": {
+    "bundled": 9064,
+    "minified": 2538,
+    "gzipped": 1254
+  },
+  "mathform.umd.js": {
+    "bundled": 11917,
+    "minified": 2831,
+    "gzipped": 1373
+  }
+}

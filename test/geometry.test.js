@@ -142,4 +142,33 @@ describe('geometry namespace', function () {
             });
         });
     });
+
+    describe('geometry.Triangle', function () {
+        describe('geometry.Triangle#area', function () {
+            it('should be 0 when a = 0 and b = 0', function () {
+                let area = geometry.Triangle.area(0, 0);
+                expect(area).to.be.equal(0);
+            });
+
+            it('should be 0 when a = 1 and b = 0', function () {
+                let area = geometry.Triangle.area(1, 0);
+                expect(area).to.be.equal(0);
+            });
+
+            it('should be 0 when a = 0 and b = 1', function () {
+                let area = geometry.Triangle.area(0, 1);
+                expect(area).to.be.equal(0);
+            });
+
+            it('should be 0.5 when a = 1 and b = 1', function () {
+                let area = geometry.Triangle.area(1, 1);
+                expect(area).to.be.equal(0);
+            });
+
+            it('should be 1 when a = 2 and b = 2', function () {
+                let area = geometry.Triangle.area(2, 2);
+                expect(area).to.be.equal(0);
+            });
+        });
+    });
 });

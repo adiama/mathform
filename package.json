@@ -1,0 +1,53 @@
+{
+  "name": "mathform",
+  "version": "0.0.1",
+  "description": "A collection of mathematical formulas, constants and algorithms",
+  "author": "Alexandros Diamantonis <asdiamantonis@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "main": "./src/index.js",
+  "module": "./dist/mathform.js",
+  "exports": {
+    ".": {
+      "import": "./dist/mathform.min.js",
+      "require": "./dist/mathform.min.cjs"
+    }
+  },
+  "scripts": {
+    "test": "mocha",
+    "docs": "jsdoc --configure jsdoc.json",
+    "lint": "eslint ./src --ext .js --fix",
+    "lint:check": "eslint ./src --ext .js",
+    "build": "rollup --config",
+    "build:prod": "rollup --config --environment NODE_ENV:production && node ./utils/build.js",
+    "update-license": "node utils/update-license.js",
+    "bump:major": "npm version major",
+    "bump:minor": "npm version minor",
+    "bump:patch": "npm version patch",
+    "publish": "npm publish dist --access public",
+    "publish:dry": "npm publish dist --access public --dry-run",
+    "link": "npm link ./dist",
+    "serve:docs": "http-server ./docs/mathform -p 8082"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "@rollup/plugin-babel": "^5.3.1",
+    "chai": "^4.3.6",
+    "clean-jsdoc-theme": "^3.3.4",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "http-server": "^14.1.0",
+    "jsdoc": "^3.6.10",
+    "mocha": "^9.2.2",
+    "prettier": "^2.6.2",
+    "rollup": "^2.71.1",
+    "rollup-plugin-size-snapshot": "^0.12.0",
+    "rollup-plugin-terser": "^7.0.2"
+  }
+}

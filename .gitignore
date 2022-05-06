@@ -1,0 +1,10 @@
+.vscode
+.DS_Store
+
+node_modules
+
+package-lock.json
+
+dist/LICENSE.md
+dist/package.json
+dist/README.md

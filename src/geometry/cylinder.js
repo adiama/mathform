@@ -46,4 +46,8 @@ export default class Cylinder {
     static volume(r, h) {
         return Math.PI * r ** 2 * h;
     }
+
+    /**
+     * TODO: add functions for finding radius
+     */
 }

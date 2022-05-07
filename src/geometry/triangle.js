@@ -100,65 +100,12 @@ export default class Triangle {
      * @memberof! geometry.Triangle#
      * @param   {number} a        - Side a
      * @param   {number} b        - Side b
-     * @param   {number} theta    - Angle &theta;, in degrees
+     * @param   {number} theta    - Angle &theta;, in **radians**
      * @returns {number}            (<sup>1</sup>&frasl;<sub>2</sub>)ab sin &theta;
      * @static
      */
     static areaSAS(a, b, theta) {
         return (1 / 2) * a * b * Math.sin(theta);
-    }
-
-    static areaASA(A, B, c) {
-        let C = this.angleASA(A, B);
-        let a = this.sideASA(c, C, A);
-        let b = this.sideASA(c, C, B);
-        return this.areaSSS(a, b, c);
-    }
-
-    static angleASA(A, B) {
-        return 180 - (A + B);
-    }
-
-    static sideASA(a, A, theta) {
-        return (a / Math.sin(A)) * Math.sin(theta);
-    }
-
-    static solve({
-        base,
-        altitude,
-        sideA,
-        sideB,
-        sideC,
-        angleA,
-        angleB,
-        angleC,
-        area,
-        perimeter,
-        semiperimeter,
-    }) {
-        // AAA angleA && angleB && angleC
-        // Can't solve base, altitude, area, perimeter, semiperimeter
-        //      unless base && altitude || one side are given
-
-        // AAS
-        // ASA
-        // SAS
-        // SSA
-        // SSS sideA && sideB && sideC
-
-        return {
-            base,
-            altitude,
-            sideA,
-            sideB,
-            sideC,
-            angleA,
-            angleB,
-            angleC,
-            area,
-            perimeter,
-            semiperimeter,
-        };
     }
 
     /**
@@ -188,4 +135,9 @@ export default class Triangle {
     static isRight(a, b, c) {
         return c ** 2 === a ** 2 + b ** 2;
     }
+
+    /**
+     * TODO: add functions for missing angles and sides with trigonometric functions
+     *      - https://www.mathsisfun.com/algebra/trig-solving-triangles.html
+     */
 }

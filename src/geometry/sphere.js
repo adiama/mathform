@@ -16,7 +16,7 @@ export default class Sphere {
      * @returns {number}
      * @static
      */
-    static surfaceArea(r) {
+    static area(r) {
         return 4 * Math.PI * r ** 2;
     }
 
@@ -30,4 +30,13 @@ export default class Sphere {
     static volume(r) {
         return (4 / 3) * Math.PI * r ** 3;
     }
+
+    /**
+     * TODO: add functions for
+     *  - diameter
+     *  - radiusFrom
+     *      - volume
+     *      - area
+     *      - diameter
+     */
 }

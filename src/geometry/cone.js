@@ -59,4 +59,9 @@ export default class Cone {
     static volume(r, h) {
         return (1 / 3) * Math.PI * r ** 2 * h;
     }
+
+    /**
+     * TODO: add functions for finding
+     *  - radius
+     */
 }

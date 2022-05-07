@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { geometry, format } from 'mathform';
+import { geometry, format } from '../src/index.js';
 
 describe('geometry namespace', function () {
     describe('geometry.Circle', function () {
@@ -162,13 +162,121 @@ describe('geometry namespace', function () {
 
             it('should be 0.5 when a = 1 and b = 1', function () {
                 let area = geometry.Triangle.area(1, 1);
-                expect(area).to.be.equal(0);
+                expect(area).to.be.equal(0.5);
             });
 
-            it('should be 1 when a = 2 and b = 2', function () {
-                let area = geometry.Triangle.area(2, 2);
-                expect(area).to.be.equal(0);
+            it('should be 1 when a = 1 and b = 2', function () {
+                let area = geometry.Triangle.area(1, 2);
+                expect(area).to.be.equal(1);
             });
+
+            it('should be 1 when a = 2 and b = 1', function () {
+                let area = geometry.Triangle.area(2, 1);
+                expect(area).to.be.equal(1);
+            });
+
+            it('should be 2 when a = 2 and b = 2', function () {
+                let area = geometry.Triangle.area(2, 2);
+                expect(area).to.be.equal(2);
+            });
+        });
+
+        describe('geometry.Triangle#altitude', function () {
+            it('should test altitude');
+        });
+
+        describe('geometry.Triangle#base', function () {
+            it('should test base');
+        });
+
+        describe('geometry.Triangle#perimeter', function () {
+            it('should test perimeter');
+        });
+
+        describe('geometry.Triangle#semiperimeter', function () {
+            it('should test semiperimeter');
+        });
+
+        describe('geometry.Triangle#areaSSS', function () {
+            it('should test areaSSS');
+        });
+
+        describe('geometry.Triangle#areaSAS', function () {
+            it('should test areaSAS');
+        });
+
+        describe('geometry.Triangle#hypotenuse', function () {
+            it('should test hypotenuse');
+        });
+
+        describe('geometry.Triangle#isRight', function () {
+            it('should test isRight');
+        });
+    });
+
+    describe('geometry.Rectangle', function () {
+        describe('geometry.Rectangle#area', function () {
+            it('should test area');
+        });
+
+        describe('geometry.Rectangle#circumference', function () {
+            it('should test circumference');
+        });
+
+        describe('geometry.Rectangle#diagonal', function () {
+            it('should test diagonal');
+        });
+
+        describe('geometry.Rectangle#isSquare', function () {
+            it('should test isSquare');
+        });
+    });
+
+    describe('geometry.Sphere', function () {
+        describe('geometry.Sphere#area', function () {
+            it('should test area');
+        });
+
+        describe('geometry.Sphere#volume', function () {
+            it('should test volume');
+        });
+    });
+
+    describe('geometry.Cone', function () {
+        describe('geometry.Cone#slantHeight', function () {
+            it('should test slantHeight');
+        });
+
+        describe('geometry.Cone#lateralArea', function () {
+            it('should test lateralArea');
+        });
+
+        describe('geometry.Cone#totalArea', function () {
+            it('should test totalArea');
+        });
+
+        describe('geometry.Cone#volume', function () {
+            it('should test volume');
+        });
+    });
+
+    describe('geometry.Cylinder', function () {
+        describe('geometry.Cylinder#lateralArea', function () {
+            it('should test lateralArea');
+        });
+
+        describe('geometry.Cylinder#totalArea', function () {
+            it('should test totalArea');
+        });
+
+        describe('geometry.Cylinder#volume', function () {
+            it('should test volume');
+        });
+    });
+
+    describe('geometry.Cuboid', function () {
+        describe('geometry.Cuboid#', function () {
+            it('should test functions');
         });
     });
 });

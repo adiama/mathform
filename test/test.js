@@ -128,11 +128,11 @@ describe('namespace: rng', function () {
 describe('namespace: helpers', function () {
     describe('mathform.helpers#isGreaterThanZero', function () {
         it('should return true when 1 is passed as value', function () {
-            expect(mathform.helpers.isGreaterThanZero(1)).to.equal(true);
+            expect(mathform.helpers.isGreaterThanZero(1)).to.be.true;
         });
 
         it('should return true when 1 is passed as value and strict is false', function () {
-            expect(mathform.helpers.isGreaterThanZero(1, '', false)).to.equal(true);
+            expect(mathform.helpers.isGreaterThanZero(1, '', false)).to.be.true;
         });
 
         it(`should throw an Error containing 'must be greater than 0.' when 0 is passed as the value`, function () {
@@ -143,7 +143,7 @@ describe('namespace: helpers', function () {
         });
 
         it('should return false when 0 is passed as value and strict is false', function () {
-            expect(mathform.helpers.isGreaterThanZero(0, '', false)).to.equal(false);
+            expect(mathform.helpers.isGreaterThanZero(0, '', false)).to.be.false;
         });
 
         it(`should throw an Error containing 'must be greater than 0.' when a negative is passed as the value`, function () {
@@ -154,7 +154,7 @@ describe('namespace: helpers', function () {
         });
 
         it('should return false when a negative is passed as value and strict is false', function () {
-            expect(mathform.helpers.isGreaterThanZero(-1, '', false)).to.equal(false);
+            expect(mathform.helpers.isGreaterThanZero(-1, '', false)).to.be.false;
         });
 
         it(`should throw Error('Radius must be greater than 0.') when a negative value and 'Radius' are passed as arguments`, function () {

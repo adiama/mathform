@@ -408,19 +408,51 @@ describe('namespace: geometry', function () {
 
     describe('geometry.Cone', function () {
         describe('geometry.Cone#slantHeight', function () {
-            it('should test slantHeight');
+            it('should be approximately sqrt(2) when r = 1 and h = 1', function () {
+                let slantHeight = geometry.Cone.slantHeight(1, 1);
+                expect(slantHeight).to.equal(Math.sqrt(2));
+            });
+
+            it('should be approximately 2.83 when r = 2 and h = 2', function () {
+                let slantHeight = geometry.Cone.slantHeight(2, 2);
+                expect(slantHeight).to.be.approximately(2.83, 0.01);
+            });
         });
 
         describe('geometry.Cone#lateralArea', function () {
-            it('should test lateralArea');
+            it('should be approximately 4.44 when r = 1 and h = 1', function () {
+                let area = geometry.Cone.lateralArea(1, 1);
+                expect(area).to.be.approximately(4.44, 0.01);
+            });
+
+            it('should be approximately 17.77 when r = 2 and h = 2', function () {
+                let area = geometry.Cone.lateralArea(2, 2);
+                expect(area).to.be.approximately(17.77, 0.01);
+            });
         });
 
         describe('geometry.Cone#totalArea', function () {
-            it('should test totalArea');
+            it('should be approximately 7.58 when r = 1 and h = 1', function () {
+                let area = geometry.Cone.totalArea(1, 1);
+                expect(area).to.be.approximately(7.58, 0.01);
+            });
+
+            it('should be approximately 30.34 when r = 2 and h = 2', function () {
+                let area = geometry.Cone.totalArea(2, 2);
+                expect(area).to.be.approximately(30.34, 0.01);
+            });
         });
 
         describe('geometry.Cone#volume', function () {
-            it('should test volume');
+            it('should be approximately 1.05 when r = 1 and h = 1', function () {
+                let volume = geometry.Cone.volume(1, 1);
+                expect(volume).to.be.approximately(1.05, 0.01);
+            });
+
+            it('should be approximately 8.38 when r = 2 and h = 2', function () {
+                let volume = geometry.Cone.volume(2, 2);
+                expect(volume).to.be.approximately(8.38, 0.01);
+            });
         });
     });
 

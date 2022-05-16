@@ -21,7 +21,7 @@ export default class Cone {
      * @static
      */
     static slantHeight(r, h) {
-        return Triangle.Hypotenuse(r, h);
+        return Triangle.hypotenuse(r, h);
     }
 
     /**
@@ -33,7 +33,7 @@ export default class Cone {
      * @static
      */
     static lateralArea(r, h) {
-        return Math.PI * r * this.SlantHeight(r, h);
+        return Math.PI * r * this.slantHeight(r, h);
     }
 
     /**
@@ -45,7 +45,7 @@ export default class Cone {
      * @static
      */
     static totalArea(r, h) {
-        return this.LateralArea(r, h) + Circle.Area(r);
+        return this.lateralArea(r, h) + Circle.area(r);
     }
 
     /**

@@ -326,19 +326,56 @@ describe('namespace: geometry', function () {
 
     describe('geometry.Rectangle', function () {
         describe('geometry.Rectangle#area', function () {
-            it('should test area');
+            it('should be 1 when a = 1 and b = 1', function () {
+                let area = geometry.Rectangle.area(1, 1);
+                expect(area).to.equal(1);
+            });
+
+            it('should be 2 when a = 1 and b = 2', function () {
+                let area = geometry.Rectangle.area(1, 2);
+                expect(area).to.equal(2);
+            });
+
+            it('should be 2 when a = 2 and b = 1', function () {
+                let area = geometry.Rectangle.area(2, 1);
+                expect(area).to.equal(2);
+            });
+
+            it('should be 4 when a = 2 and b = 2', function () {
+                let area = geometry.Rectangle.area(2, 2);
+                expect(area).to.equal(4);
+            });
+
+            it('should be approximately 0.01 when a = 0.1 and b = 0.1', function () {
+                let area = geometry.Rectangle.area(0.1, 0.1);
+                expect(area).to.be.approximately(0.01, Number.EPSILON);
+            });
         });
 
         describe('geometry.Rectangle#circumference', function () {
-            it('should test circumference');
+            it('should be 4 when a = 1, b = 1', function () {
+                let circumference = geometry.Rectangle.circumference(1, 1);
+                expect(circumference).to.equal(4);
+            });
+
+            it('should be 0.4 when a = 0.1, b = 0.1', function () {
+                let circumference = geometry.Rectangle.circumference(0.1, 0.1);
+                expect(circumference).to.equal(0.4);
+            });
         });
 
         describe('geometry.Rectangle#diagonal', function () {
-            it('should test diagonal');
+            it('should be sqrt(2) when a = 1, b = 1', function () {
+                let diagonal = geometry.Rectangle.diagonal(1, 1);
+                expect(diagonal).to.be.approximately(Math.sqrt(2), Number.EPSILON);
+            });
         });
 
         describe('geometry.Rectangle#isSquare', function () {
-            it('should test isSquare');
+            it('should return true if a and b are equal', function () {
+                let isSquare = geometry.Rectangle.isSquare(1, 1);
+                expect(isSquare).to.be.true;
+            });
         });
     });
 

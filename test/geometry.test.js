@@ -381,11 +381,28 @@ describe('namespace: geometry', function () {
 
     describe('geometry.Sphere', function () {
         describe('geometry.Sphere#area', function () {
-            it('should test area');
+            it('should match with Circle r = 2 area when Sphere r = 1', function () {
+                let circleArea = geometry.Circle.area(2);
+                let sphereArea = geometry.Sphere.area(1);
+                expect(sphereArea).to.equal(circleArea);
+            });
+
+            it('should be approximately 50.27 when r = 2', function () {
+                let area = geometry.Sphere.area(2);
+                expect(area).to.be.approximately(50.27, 0.01);
+            });
         });
 
         describe('geometry.Sphere#volume', function () {
-            it('should test volume');
+            it('should be approximately 4.19 when r = 1', function () {
+                let volume = geometry.Sphere.volume(1);
+                expect(volume).to.be.approximately(4.19, 0.01);
+            });
+
+            it('should be approximately 33.51 when r = 2', function () {
+                let volume = geometry.Sphere.volume(2);
+                expect(volume).to.be.approximately(33.51, 0.01);
+            });
         });
     });
 

@@ -39,7 +39,7 @@ export default class Triangle {
      * Calculates the base of a triangle from its area and height.
      *
      * @memberof! geometry.Triangle#
-     * @param   {number} A  -   Height
+     * @param   {number} A  -   Area
      * @param   {number} h  -   Height
      * @returns {number}        2(<sup>A</sup>&frasl;<sub>h</sub>)
      * @static

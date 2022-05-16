@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { geometry, format } from '../src/index.js';
 
-describe('geometry namespace', function () {
+describe('namespace: geometry', function () {
     describe('geometry.Circle', function () {
         it('should match numbers of area and circumference when r = 2', function () {
             let r = 2;
@@ -182,11 +182,43 @@ describe('geometry namespace', function () {
         });
 
         describe('geometry.Triangle#altitude', function () {
-            it('should test altitude');
+            it('should be Infinity when base is 0', function () {
+                let altitude = geometry.Triangle.altitude(Math.random(), 0);
+                expect(altitude).to.be.equal(Infinity);
+            });
+
+            it('should be 2 when Area is 0.1 and base is 0.1', function () {
+                let altitude = geometry.Triangle.altitude(0.1, 0.1);
+                expect(altitude).to.be.equal(2);
+            });
+
+            it('should be 2 when Area is 1 and base is 1', function () {
+                let altitude = geometry.Triangle.altitude(1, 1);
+                expect(altitude).to.be.equal(2);
+            });
+
+            it('should be 2 when Area === base', function () {
+                let n = Math.floor(Math.random() * 100) + 1;
+                let altitude = geometry.Triangle.altitude(n, n);
+                expect(altitude).to.be.equal(2);
+            });
+
+            it('should be 1 when Area is 1 and base is 2', function () {
+                let altitude = geometry.Triangle.altitude(1, 2);
+                expect(altitude).to.be.equal(1);
+            });
+
+            it('should be 4 when Area is 2 and base is 1', function () {
+                let altitude = geometry.Triangle.altitude(2, 1);
+                expect(altitude).to.be.equal(4);
+            });
         });
 
         describe('geometry.Triangle#base', function () {
-            it('should test base');
+            it('should be 4 when Area is 2 and base is 1', function () {
+                let altitude = geometry.Triangle.base(2, 1);
+                expect(altitude).to.be.equal(4);
+            });
         });
 
         describe('geometry.Triangle#perimeter', function () {

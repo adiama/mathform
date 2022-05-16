@@ -104,33 +104,4 @@ export default class Circle {
     static radiusFromDiameter(d) {
         return d / 2;
     }
-
-    /**
-     * Checks if the given input is greater than 0.
-     *  If not, it throws an error.
-     *
-     * @example
-     * // throws 'Radius must be greater than 0.'
-     * this._isGreaterThanZero(-1, 'Radius');
-     *
-     * // passes
-     * this._isGreaterThanZero(1, 'Area');
-     *
-     * @param   {number}    input   -   Input value
-     * @param   {boolean}   strict  -   Check if you need an exception instead
-     * @throws  {Error}                 When input < 0
-     * @returns {boolean}
-     * @private
-     */
-    _isGreaterThanZero(input, strict = false) {
-        if (input < 0) {
-            if (strict) {
-                throw new Error(`Value must be greater than 0.`);
-            }
-
-            return false;
-        }
-
-        return true;
-    }
 }

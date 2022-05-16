@@ -123,17 +123,20 @@ export default class Triangle {
 
     /**
      * Uses Pythagorean Theorem to determine if a triangle of sides a, b, c is a right triangle.
-     * The side c is should be the longest as it is considered the hypotenuse.
+     * Any side in the arguments can be used as the hypotenuse.
      *
      * @memberof! geometry.Triangle#
      * @param   {number} a  -   Side of length a
      * @param   {number} b  -   Side of length b
      * @param   {number} c  -   Side of length c
-     * @returns {boolean}       c&#178;&equiv;a&#178;+b&#178;
+     * @returns {boolean}       c&#178;&equiv;a&#178;+b&#178; OR a&#178;&equiv;b&#178;+c&#178; OR b&#178;&equiv;a&#178;+c&#178;
      * @static
      */
     static isRight(a, b, c) {
-        return c ** 2 === a ** 2 + b ** 2;
+        const con1 = a ** 2 === b ** 2 + c ** 2;
+        const con2 = b ** 2 === a ** 2 + c ** 2;
+        const con3 = c ** 2 === a ** 2 + b ** 2;
+        return con1 || con2 || con3;
     }
 
     /**

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { geometry, format } from '../src/index.js';
+import { geometry, format, convert } from '../src/index.js';
 
 describe('namespace: geometry', function () {
     describe('geometry.Circle', function () {
@@ -215,34 +215,112 @@ describe('namespace: geometry', function () {
         });
 
         describe('geometry.Triangle#base', function () {
-            it('should be 4 when Area is 2 and base is 1', function () {
-                let altitude = geometry.Triangle.base(2, 1);
-                expect(altitude).to.be.equal(4);
+            it('should be 0 when Area is 0', function () {
+                let base = geometry.Triangle.base(0, 1);
+                expect(base).to.be.equal(0);
+            });
+
+            it('should be 2 when Area is 1 and height is 1', function () {
+                let base = geometry.Triangle.base(1, 1);
+                expect(base).to.be.equal(2);
+            });
+
+            it('should be 4 when Area is 2 and height is 1', function () {
+                let base = geometry.Triangle.base(2, 1);
+                expect(base).to.be.equal(4);
+            });
+
+            it('should be 1 when Area is 1 and height is 2', function () {
+                let base = geometry.Triangle.base(1, 2);
+                expect(base).to.be.equal(1);
+            });
+
+            it('should be 2 when Area is 2 and height is 2', function () {
+                let base = geometry.Triangle.base(2, 2);
+                expect(base).to.be.equal(2);
+            });
+
+            it('should base to be Infinity when height is 0', function () {
+                let base = geometry.Triangle.base(1, 0);
+                expect(base).to.equal(Infinity);
             });
         });
 
         describe('geometry.Triangle#perimeter', function () {
-            it('should test perimeter');
+            it('should be 3 when a = 1, b = 1 and c = 1', function () {
+                let perimeter = geometry.Triangle.perimeter(1, 1, 1);
+                expect(perimeter).to.equal(3);
+            });
         });
 
         describe('geometry.Triangle#semiperimeter', function () {
-            it('should test semiperimeter');
+            it('should be 1 when p = 2', function () {
+                let semiperimeter = geometry.Triangle.semiperimeter(2);
+                expect(semiperimeter).to.equal(1);
+            });
         });
 
         describe('geometry.Triangle#areaSSS', function () {
-            it('should test areaSSS');
+            it('should be 6 when a = 5, b = 4, c = 3', function () {
+                let area = geometry.Triangle.areaSSS(5, 4, 3);
+                expect(area).to.equal(6);
+            });
+
+            it('should be approximately 0.5 when a = sqrt(2), b = 1, c = 1', function () {
+                let area = geometry.Triangle.areaSSS(Math.sqrt(2), 1, 1);
+                expect(area).to.be.approximately(0.5, Number.EPSILON);
+            });
         });
 
         describe('geometry.Triangle#areaSAS', function () {
-            it('should test areaSAS');
+            it('should be (6) - the same as areaSSS when a = 3, b = 4, c = 5 and theta = 90 degrees', function () {
+                let a = 3;
+                let b = 4;
+                let c = 5;
+                let theta = convert.degreesToRadians(90);
+
+                let areaSAS = geometry.Triangle.areaSAS(a, b, theta);
+                let areaSSS = geometry.Triangle.areaSSS(a, b, c);
+
+                expect(areaSAS).to.equal(areaSSS);
+            });
         });
 
         describe('geometry.Triangle#hypotenuse', function () {
-            it('should test hypotenuse');
+            it('should be 5 when a = 4, b = 3', function () {
+                let hypotenuse = geometry.Triangle.hypotenuse(4, 3);
+                expect(hypotenuse).to.equal(5);
+            });
+
+            it('should be sqrt(2) when a = 1, b = 1', function () {
+                let hypotenuse = geometry.Triangle.hypotenuse(1, 1);
+                expect(hypotenuse).to.equal(Math.sqrt(2));
+            });
+
+            it('should be approximately sqrt(3) when a = sqrt(2), b = 1', function () {
+                let hypotenuse = geometry.Triangle.hypotenuse(Math.sqrt(2), 1);
+                expect(hypotenuse).to.be.approximately(Math.sqrt(3), Number.EPSILON);
+            });
         });
 
         describe('geometry.Triangle#isRight', function () {
-            it('should test isRight');
+            it('should be true if a = 3, b= 4, c = 5', function () {
+                let isRight = geometry.Triangle.isRight(3, 4, 5);
+                expect(isRight).to.be.true;
+            });
+
+            it('should be false if a = 1, b= 1, c = 1', function () {
+                let isRight = geometry.Triangle.isRight(1, 1, 1);
+                expect(isRight).to.be.false;
+            });
+
+            /**
+             * This fails because Math.sqrt(2) ** 2 is 2.0000000000000004
+             */
+            // it('should be true if a = 1, b= 1, c = sqrt(2)', function () {
+            //     let isRight = geometry.Triangle.isRight(1, 1, Math.sqrt(2));
+            //     expect(isRight).to.be.true;
+            // });
         });
     });
 

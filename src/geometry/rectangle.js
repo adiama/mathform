@@ -44,7 +44,7 @@ export default class Rectangle {
      * @static
      */
     static diagonal(a, b) {
-        return Triangle.Hypotenuse(a, b);
+        return Triangle.hypotenuse(a, b);
     }
 
     /**

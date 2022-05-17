@@ -458,15 +458,39 @@ describe('namespace: geometry', function () {
 
     describe('geometry.Cylinder', function () {
         describe('geometry.Cylinder#lateralArea', function () {
-            it('should test lateralArea');
+            it('should be 2 * Pi when r = 1 and h = 1', function () {
+                let latArea = geometry.Cylinder.lateralArea(1, 1);
+                expect(latArea).to.equal(Math.PI * 2);
+            });
+
+            it('should be 8 * Pi when r = 2 and h = 2', function () {
+                let latArea = geometry.Cylinder.lateralArea(2, 2);
+                expect(latArea).to.equal(Math.PI * 8);
+            });
         });
 
         describe('geometry.Cylinder#totalArea', function () {
-            it('should test totalArea');
+            for (let i = 1; i <= 10; i++) {
+                it(`should match area with Sphere when r = ${i}, h = ${i}`, function () {
+                    let r = i;
+                    let h = i;
+                    let sphereArea = geometry.Sphere.area(r);
+                    let cylinderTotalArea = geometry.Cylinder.totalArea(r, h);
+                    expect(cylinderTotalArea).to.equal(sphereArea);
+                });
+            }
         });
 
         describe('geometry.Cylinder#volume', function () {
-            it('should test volume');
+            it('should be Pi when r = 1 and h = 1', function () {
+                let volume = geometry.Cylinder.volume(1, 1);
+                expect(volume).to.equal(Math.PI);
+            });
+
+            it('should be 8 * Pi when r = 2 and h = 2', function () {
+                let volume = geometry.Cylinder.volume(2, 2);
+                expect(volume).to.equal(Math.PI * 8);
+            });
         });
     });
 

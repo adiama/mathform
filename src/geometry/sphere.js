@@ -10,10 +10,14 @@
  */
 export default class Sphere {
     /**
+     * Calculates the surface area of a sphere
+     *
+     * @example
+     * mathform.geometry.Sphere.area(2) // ~50.27
      *
      * @memberof! geometry.Sphere#
-     * @param {number} r    -
-     * @returns {number}
+     * @param   {number} r    - radius
+     * @returns {number}        4&pi;r&#178;
      * @static
      */
     static area(r) {
@@ -21,10 +25,14 @@ export default class Sphere {
     }
 
     /**
+     * Calculates the volume of a sphere
+     *
+     * @example
+     * mathform.geometry.Sphere.volume(2) // ~33.51
      *
      * @memberof! geometry.Sphere#
-     * @param {number} r    -
-     * @returns {number}
+     * @param   {number} r    - radius
+     * @returns {number}        (<sup>4</sup>&frasl;<sub>3</sub>)&pi;r&#179;
      * @static
      */
     static volume(r) {

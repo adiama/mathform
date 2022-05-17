@@ -32,7 +32,7 @@ export default class Cylinder {
      * @static
      */
     static totalArea(r, h) {
-        return Cylinder.Area(r, h) + 2 * Circle.Area(r);
+        return Cylinder.lateralArea(r, h) + 2 * Circle.area(r);
     }
 
     /**

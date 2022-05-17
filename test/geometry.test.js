@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { geometry, format, convert } from '../src/index.js';
+import { geometry, helpers, convert } from '../src/index.js';
 
 describe('namespace: geometry', function () {
     describe('geometry.Circle', function () {
@@ -27,7 +27,7 @@ describe('namespace: geometry', function () {
             });
 
             it('should be formatted as 12.57 when r = 2', function () {
-                let area = format(geometry.Circle.area(2));
+                let area = helpers.format(geometry.Circle.area(2));
                 expect(area).to.be.equals(12.57);
             });
         });
@@ -49,7 +49,7 @@ describe('namespace: geometry', function () {
             });
 
             it('should be formatted as 12.57 when r = 2', function () {
-                let circumference = format(geometry.Circle.circumference(2));
+                let circumference = helpers.format(geometry.Circle.circumference(2));
                 expect(circumference).to.be.equal(12.57);
             });
         });
@@ -93,7 +93,7 @@ describe('namespace: geometry', function () {
             });
 
             it('should be formatted as 2 when A = 12.57', function () {
-                let radius = format(geometry.Circle.radiusFromArea(12.57));
+                let radius = helpers.format(geometry.Circle.radiusFromArea(12.57));
                 expect(radius).to.be.equal(2);
             });
         });
@@ -115,7 +115,7 @@ describe('namespace: geometry', function () {
             });
 
             it('should be formatted as 2 when C = 12.57', function () {
-                let radius = format(geometry.Circle.radiusFromCircumference(12.57));
+                let radius = helpers.format(geometry.Circle.radiusFromCircumference(12.57));
                 expect(radius).to.be.equal(2);
             });
         });

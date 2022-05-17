@@ -101,8 +101,8 @@ export default class Triangle {
      * @static
      */
     static areaSSS(a, b, c) {
-        let p = this.perimeter(a, b, c);
-        let s = this.semiperimeter(p);
+        const p = this.perimeter(a, b, c);
+        const s = this.semiperimeter(p);
         return Math.sqrt(s * (s - a) * (s - b) * (s - c));
     }
 

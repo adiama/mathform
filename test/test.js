@@ -7,37 +7,37 @@ chai.use(chaiThings);
 
 describe('mathform.format', function () {
     it('should format 1.434 as 1.43', function () {
-        let n = mathform.format(1.434);
+        let n = mathform.helpers.format(1.434);
         expect(n).to.be.equal(1.43);
     });
 
     it('should format 1.436 as 1.44', function () {
-        let n = mathform.format(1.436);
+        let n = mathform.helpers.format(1.436);
         expect(n).to.be.equal(1.44);
     });
 
     it('should format "1.432" as 1.43', function () {
-        let n = mathform.format('1.432');
+        let n = mathform.helpers.format('1.432');
         expect(n).to.be.equal(1.43);
     });
 
     it('should format "1.432" as 1.4', function () {
-        let n = mathform.format('1.432', 1);
+        let n = mathform.helpers.format('1.432', 1);
         expect(n).to.be.equal(1.4);
     });
 
     it('should format "1.432" as 1', function () {
-        let n = mathform.format('1.432', 0);
+        let n = mathform.helpers.format('1.432', 0);
         expect(n).to.be.equal(1);
     });
 
     it('should format "1.6" as 2', function () {
-        let n = mathform.format('1.6', 0);
+        let n = mathform.helpers.format('1.6', 0);
         expect(n).to.be.equal(2);
     });
 
     it('should format 1 as 1', function () {
-        let n = mathform.format(1, 100);
+        let n = mathform.helpers.format(1, 100);
         expect(n).to.be.equal(1);
     });
 });

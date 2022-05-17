@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Adding favicon -->
+    
+
+    <!-- Adding meta -->
+    
+
+    <!-- Adding external script-->
+    
+
+    <!-- Adding external style-->
+    
+
+    <!-- Adding scripts-->
+    
+
+    <!-- Adding style-->
+    
+
+    <!-- Adding overlay script-->
+    
+
+    <!-- Adding overlay style-->
+    
+
+
+    <title>
+      helpers
+    </title>
+
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/third-party/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/third-party/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/reset.css">
+    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-base.css">
+    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-dark.css">
+    
+    <svg aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    style="display:none">
+    <defs>
+        <symbol id="copy-icon" viewbox="0 0 488.3 488.3">
+            <g>
+                <path
+                    d="M314.25,85.4h-227c-21.3,0-38.6,17.3-38.6,38.6v325.7c0,21.3,17.3,38.6,38.6,38.6h227c21.3,0,38.6-17.3,38.6-38.6V124    C352.75,102.7,335.45,85.4,314.25,85.4z M325.75,449.6c0,6.4-5.2,11.6-11.6,11.6h-227c-6.4,0-11.6-5.2-11.6-11.6V124    c0-6.4,5.2-11.6,11.6-11.6h227c6.4,0,11.6,5.2,11.6,11.6V449.6z" />
+                <path
+                    d="M401.05,0h-227c-21.3,0-38.6,17.3-38.6,38.6c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5c0-6.4,5.2-11.6,11.6-11.6h227    c6.4,0,11.6,5.2,11.6,11.6v325.7c0,6.4-5.2,11.6-11.6,11.6c-7.5,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5c21.3,0,38.6-17.3,38.6-38.6    V38.6C439.65,17.3,422.35,0,401.05,0z" />
+            </g>
+        </symbol>
+        <symbol id='search-icon' viewBox="0 0 512 512">
+            <g>
+                <g>
+                    <path
+                        d="M225.474,0C101.151,0,0,101.151,0,225.474c0,124.33,101.151,225.474,225.474,225.474    c124.33,0,225.474-101.144,225.474-225.474C450.948,101.151,349.804,0,225.474,0z M225.474,409.323    c-101.373,0-183.848-82.475-183.848-183.848S124.101,41.626,225.474,41.626s183.848,82.475,183.848,183.848    S326.847,409.323,225.474,409.323z" />
+                </g>
+            </g>
+            <g>
+                <g>
+                    <path
+                        d="M505.902,476.472L386.574,357.144c-8.131-8.131-21.299-8.131-29.43,0c-8.131,8.124-8.131,21.306,0,29.43l119.328,119.328    c4.065,4.065,9.387,6.098,14.715,6.098c5.321,0,10.649-2.033,14.715-6.098C514.033,497.778,514.033,484.596,505.902,476.472z" />
+                </g>
+            </g>
+        </symbol>
+        <symbol id="down-icon" viewBox="0 0 16 16">
+            <path 
+                fill-rule="evenodd" 
+                clip-rule="evenodd" 
+                d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"
+            >
+            </path>
+        </symbol>
+    </defs>
+</svg>
+  </head>
+
+  <body>
+
+    <nav class="navbar" id="navbar">
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Home</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="8408505" > <h3 class="accordion-heading">Classes<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=9000370><div class="accordion-heading child"><a href="geometry.Circle.html">Circle</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="geometry.Circle.html#area">area</a></li><li data-type='method'><a href="geometry.Circle.html#circumference">circumference</a></li><li data-type='method'><a href="geometry.Circle.html#diameter">diameter</a></li><li data-type='method'><a href="geometry.Circle.html#radiusFromArea">radiusFromArea</a></li><li data-type='method'><a href="geometry.Circle.html#radiusFromCircumference">radiusFromCircumference</a></li><li data-type='method'><a href="geometry.Circle.html#radiusFromDiameter">radiusFromDiameter</a></li></ul></li><li class="accordion collapsed child" id=9955471><div class="accordion-heading child"><a href="geometry.Cone.html">Cone</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="geometry.Cone.html#lateralArea">lateralArea</a></li><li data-type='method'><a href="geometry.Cone.html#slantHeight">slantHeight</a></li><li data-type='method'><a href="geometry.Cone.html#totalArea">totalArea</a></li><li data-type='method'><a href="geometry.Cone.html#volume">volume</a></li></ul></li><li class="accordion collapsed child" id=5382742><div class="accordion-heading child"><a href="geometry.Cuboid.html">Cuboid</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="geometry.Cuboid.html#area">area</a></li><li data-type='method'><a href="geometry.Cuboid.html#diagonal">diagonal</a></li><li data-type='method'><a href="geometry.Cuboid.html#sideFromDiagonal">sideFromDiagonal</a></li><li data-type='method'><a href="geometry.Cuboid.html#sideFromVolume">sideFromVolume</a></li><li data-type='method'><a href="geometry.Cuboid.html#volume">volume</a></li></ul></li><li class="accordion collapsed child" id=7626573><div class="accordion-heading child"><a href="geometry.Cylinder.html">Cylinder</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="geometry.Cylinder.html#lateralArea">lateralArea</a></li><li data-type='method'><a href="geometry.Cylinder.html#totalArea">totalArea</a></li><li data-type='method'><a href="geometry.Cylinder.html#volume">volume</a></li></ul></li><li class="accordion collapsed child" id=1864494><div class="accordion-heading child"><a href="geometry.Rectangle.html">Rectangle</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="geometry.Rectangle.html#area">area</a></li><li data-type='method'><a href="geometry.Rectangle.html#circumference">circumference</a></li><li data-type='method'><a href="geometry.Rectangle.html#diagonal">diagonal</a></li><li data-type='method'><a href="geometry.Rectangle.html#isSquare">isSquare</a></li></ul></li><li class="accordion collapsed child" id=6017547><div class="accordion-heading child"><a href="geometry.Sphere.html">Sphere</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="geometry.Sphere.html#area">area</a></li><li data-type='method'><a href="geometry.Sphere.html#volume">volume</a></li></ul></li><li class="accordion collapsed child" id=4364374><div class="accordion-heading child"><a href="geometry.Triangle.html">Triangle</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="geometry.Triangle.html#altitude">altitude</a></li><li data-type='method'><a href="geometry.Triangle.html#area">area</a></li><li data-type='method'><a href="geometry.Triangle.html#areaSAS">areaSAS</a></li><li data-type='method'><a href="geometry.Triangle.html#areaSSS">areaSSS</a></li><li data-type='method'><a href="geometry.Triangle.html#base">base</a></li><li data-type='method'><a href="geometry.Triangle.html#hypotenuse">hypotenuse</a></li><li data-type='method'><a href="geometry.Triangle.html#isRight">isRight</a></li><li data-type='method'><a href="geometry.Triangle.html#perimeter">perimeter</a></li><li data-type='method'><a href="geometry.Triangle.html#semiperimeter">semiperimeter</a></li></ul></li><li class="accordion collapsed child" id=8794689><div class="accordion-heading child"><a href="rng.LCG.html">LCG</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="rng.LCG.html#LCG#step">LCG#step</a></li></ul></li><li class="accordion-list" id=""><a href="rng.LCG_exports.LCG.html">exports.LCG</a></li></ul> </div><div class="accordion collapsed" id="2102691" > <h3 class="accordion-heading">Namespaces<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=1188625><div class="accordion-heading child"><a href="convert.html">convert</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="convert.html#.exports.degreesToRadians">exports.degreesToRadians</a></li><li data-type='method'><a href="convert.html#.exports.normalize">exports.normalize</a></li><li data-type='method'><a href="convert.html#.exports.radiansToDegrees">exports.radiansToDegrees</a></li></ul></li><li class="accordion-list" id=""><a href="geometry.html">geometry</a></li><li class="accordion collapsed child" id=1096036><div class="accordion-heading child"><a href="helpers.html">helpers</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="helpers.html#.exports.isGreaterThanZero">exports.isGreaterThanZero</a></li></ul></li><li class="accordion collapsed child" id=3018029><div class="accordion-heading child"><a href="rng.html">rng</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="rng.html#.exports.generateRandomFloat">exports.generateRandomFloat</a></li><li data-type='method'><a href="rng.html#.exports.generateRandomInteger">exports.generateRandomInteger</a></li></ul></li></ul> </div>
+      
+
+    </nav>
+    <div class="navbar-ham" id="navbar-ham">
+      <div>
+        <div class="first"></div>
+        <div class="second"></div>
+        <div class="third"></div>
+      </div>
+    </div>
+
+    <div id="main" class="main-content">
+      
+      <h1 id='page-title' class="page-title">
+        helpers
+      </h1>
+      
+
+      
+
+
+
+
+<section>
+
+
+<header>
+    
+        
+        <h2>
+        
+        helpers
+        
+        </h2>
+        
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="helpers.js.html">helpers.js</a>, <a href="helpers.js.html#line1">line 1</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.isGreaterThanZero">
+        <a href="#.exports.isGreaterThanZero">#</a>
+        <span class="type-signature">(static) </span>exports.isGreaterThanZero<span class="signature">(input, name, strict)</span><span class="type-signature"> &rarr; {boolean}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        Checks if the given input is greater than 0. Throws an error or returns boolean if strict parameter is passed as false.
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>input</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Input value</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Variable name</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>strict</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Set to false if you need an exception instead. Default true</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="helpers.js.html">helpers.js</a>, <a href="helpers.js.html#line29">line 29</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Throws:</strong>
+    
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        When input < 0
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+    </div>
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <div class="rel">
+    <pre class="prettyprint"><code>// throws 'Radius must be greater than 0.'this._isGreaterThanZero(-1, 'Radius');// returns falsethis._isGreaterThanZero(-1, 'Radius', false);// passesthis._isGreaterThanZero(1, 'Area');// returns truethis._isGreaterThanZero(1, 'Area', false);</code></pre>
+    
+    
+    </div>
+
+    </div>
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    </div>
+
+    <footer class="footer" id="footer">
+      
+    </footer>
+
+    <script src="scripts/third-party/prettify.js"></script>
+    <script src="scripts/third-party/lang-css.js"></script>
+    <script type="text/javascript" src="scripts/misc.js"></script>
+
+    <script>prettyPrint();</script>
+    <script src="scripts/linenumber.js"></script>
+    <script src="scripts/fix-code-block.js"></script>
+    <script src="scripts/fix-navbar.js"></script>
+    
+      <script src="scripts/search.js"></script>
+      <script src="scripts/third-party/fuse.js"></script>
+      <script>
+        var list = [{"title":"Circle","link":"<a href=\"geometry.Circle.html\">Circle</a>"},{"title":"geometry.Circle#area","link":"<a href=\"geometry.Circle.html#area\">geometry.Circle &rtrif; area</a>"},{"title":"geometry.Circle#circumference","link":"<a href=\"geometry.Circle.html#circumference\">geometry.Circle &rtrif; circumference</a>"},{"title":"geometry.Circle#diameter","link":"<a href=\"geometry.Circle.html#diameter\">geometry.Circle &rtrif; diameter</a>"},{"title":"geometry.Circle#radiusFromArea","link":"<a href=\"geometry.Circle.html#radiusFromArea\">geometry.Circle &rtrif; radiusFromArea</a>"},{"title":"geometry.Circle#radiusFromCircumference","link":"<a href=\"geometry.Circle.html#radiusFromCircumference\">geometry.Circle &rtrif; radiusFromCircumference</a>"},{"title":"geometry.Circle#radiusFromDiameter","link":"<a href=\"geometry.Circle.html#radiusFromDiameter\">geometry.Circle &rtrif; radiusFromDiameter</a>"},{"title":"Cone","link":"<a href=\"geometry.Cone.html\">Cone</a>"},{"title":"geometry.Cone#lateralArea","link":"<a href=\"geometry.Cone.html#lateralArea\">geometry.Cone &rtrif; lateralArea</a>"},{"title":"geometry.Cone#slantHeight","link":"<a href=\"geometry.Cone.html#slantHeight\">geometry.Cone &rtrif; slantHeight</a>"},{"title":"geometry.Cone#totalArea","link":"<a href=\"geometry.Cone.html#totalArea\">geometry.Cone &rtrif; totalArea</a>"},{"title":"geometry.Cone#volume","link":"<a href=\"geometry.Cone.html#volume\">geometry.Cone &rtrif; volume</a>"},{"title":"Cuboid","link":"<a href=\"geometry.Cuboid.html\">Cuboid</a>"},{"title":"geometry.Cuboid#area","link":"<a href=\"geometry.Cuboid.html#area\">geometry.Cuboid &rtrif; area</a>"},{"title":"geometry.Cuboid#diagonal","link":"<a href=\"geometry.Cuboid.html#diagonal\">geometry.Cuboid &rtrif; diagonal</a>"},{"title":"geometry.Cuboid#sideFromDiagonal","link":"<a href=\"geometry.Cuboid.html#sideFromDiagonal\">geometry.Cuboid &rtrif; sideFromDiagonal</a>"},{"title":"geometry.Cuboid#sideFromVolume","link":"<a href=\"geometry.Cuboid.html#sideFromVolume\">geometry.Cuboid &rtrif; sideFromVolume</a>"},{"title":"geometry.Cuboid#volume","link":"<a href=\"geometry.Cuboid.html#volume\">geometry.Cuboid &rtrif; volume</a>"},{"title":"Cylinder","link":"<a href=\"geometry.Cylinder.html\">Cylinder</a>"},{"title":"geometry.Cylinder#lateralArea","link":"<a href=\"geometry.Cylinder.html#lateralArea\">geometry.Cylinder &rtrif; lateralArea</a>"},{"title":"geometry.Cylinder#totalArea","link":"<a href=\"geometry.Cylinder.html#totalArea\">geometry.Cylinder &rtrif; totalArea</a>"},{"title":"geometry.Cylinder#volume","link":"<a href=\"geometry.Cylinder.html#volume\">geometry.Cylinder &rtrif; volume</a>"},{"title":"Rectangle","link":"<a href=\"geometry.Rectangle.html\">Rectangle</a>"},{"title":"geometry.Rectangle#area","link":"<a href=\"geometry.Rectangle.html#area\">geometry.Rectangle &rtrif; area</a>"},{"title":"geometry.Rectangle#circumference","link":"<a href=\"geometry.Rectangle.html#circumference\">geometry.Rectangle &rtrif; circumference</a>"},{"title":"geometry.Rectangle#diagonal","link":"<a href=\"geometry.Rectangle.html#diagonal\">geometry.Rectangle &rtrif; diagonal</a>"},{"title":"geometry.Rectangle#isSquare","link":"<a href=\"geometry.Rectangle.html#isSquare\">geometry.Rectangle &rtrif; isSquare</a>"},{"title":"Sphere","link":"<a href=\"geometry.Sphere.html\">Sphere</a>"},{"title":"geometry.Sphere#area","link":"<a href=\"geometry.Sphere.html#area\">geometry.Sphere &rtrif; area</a>"},{"title":"geometry.Sphere#volume","link":"<a href=\"geometry.Sphere.html#volume\">geometry.Sphere &rtrif; volume</a>"},{"title":"Triangle","link":"<a href=\"geometry.Triangle.html\">Triangle</a>"},{"title":"geometry.Triangle#altitude","link":"<a href=\"geometry.Triangle.html#altitude\">geometry.Triangle &rtrif; altitude</a>"},{"title":"geometry.Triangle#area","link":"<a href=\"geometry.Triangle.html#area\">geometry.Triangle &rtrif; area</a>"},{"title":"geometry.Triangle#areaSAS","link":"<a href=\"geometry.Triangle.html#areaSAS\">geometry.Triangle &rtrif; areaSAS</a>"},{"title":"geometry.Triangle#areaSSS","link":"<a href=\"geometry.Triangle.html#areaSSS\">geometry.Triangle &rtrif; areaSSS</a>"},{"title":"geometry.Triangle#base","link":"<a href=\"geometry.Triangle.html#base\">geometry.Triangle &rtrif; base</a>"},{"title":"geometry.Triangle#hypotenuse","link":"<a href=\"geometry.Triangle.html#hypotenuse\">geometry.Triangle &rtrif; hypotenuse</a>"},{"title":"geometry.Triangle#isRight","link":"<a href=\"geometry.Triangle.html#isRight\">geometry.Triangle &rtrif; isRight</a>"},{"title":"geometry.Triangle#perimeter","link":"<a href=\"geometry.Triangle.html#perimeter\">geometry.Triangle &rtrif; perimeter</a>"},{"title":"geometry.Triangle#semiperimeter","link":"<a href=\"geometry.Triangle.html#semiperimeter\">geometry.Triangle &rtrif; semiperimeter</a>"},{"title":"LCG","link":"<a href=\"rng.LCG.html\">LCG</a>"},{"title":"rng.LCG#LCG#step","link":"<a href=\"rng.LCG.html#LCG#step\">rng.LCG &rtrif; LCG</a>"},{"title":"exports.LCG","link":"<a href=\"rng.LCG_exports.LCG.html\">exports.LCG</a>"},{"title":"convert","link":"<a href=\"convert.html\">convert</a>"},{"title":"convert.exports.degreesToRadians","link":"<a href=\"convert.html#.exports.degreesToRadians\">convert &rtrif; exports</a>"},{"title":"convert.exports.normalize","link":"<a href=\"convert.html#.exports.normalize\">convert &rtrif; exports</a>"},{"title":"convert.exports.radiansToDegrees","link":"<a href=\"convert.html#.exports.radiansToDegrees\">convert &rtrif; exports</a>"},{"title":"geometry","link":"<a href=\"geometry.html\">geometry</a>"},{"title":"helpers","link":"<a href=\"helpers.html\">helpers</a>"},{"title":"helpers.exports.isGreaterThanZero","link":"<a href=\"helpers.html#.exports.isGreaterThanZero\">helpers &rtrif; exports</a>"},{"title":"rng","link":"<a href=\"rng.html\">rng</a>"},{"title":"rng.exports.generateRandomFloat","link":"<a href=\"rng.html#.exports.generateRandomFloat\">rng &rtrif; exports</a>"},{"title":"rng.exports.generateRandomInteger","link":"<a href=\"rng.html#.exports.generateRandomInteger\">rng &rtrif; exports</a>"}];
+        var options = 
+          setupSearch(list, options)
+      </script>
+    
+
+    
+
+    
+
+    
+
+
+  </body>
+
+</html>

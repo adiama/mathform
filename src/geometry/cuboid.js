@@ -22,7 +22,7 @@ export default class Cuboid {
      * @returns                 whl
      * @static
      */
-    volume(w, h, l) {
+    static volume(w, h, l) {
         return w * h * l;
     }
 
@@ -39,7 +39,7 @@ export default class Cuboid {
      * @returns                 2(wl+hl+lw)
      * @static
      */
-    area(w, h, l) {
+    static area(w, h, l) {
         return 2 * (w * l + h * l + h * w);
     }
 
@@ -56,7 +56,7 @@ export default class Cuboid {
      * @returns                 &radic;(w&#178;+h&#178;+l&#178;)
      * @static
      */
-    diagonal(w, h, l) {
+    static diagonal(w, h, l) {
         return Math.sqrt(w ** 2 + h ** 2 + l ** 2);
     }
 
@@ -73,7 +73,7 @@ export default class Cuboid {
      * @returns                 <sup>V</sup>&frasl;<sub>ab</sub>
      * @static
      */
-    sideFromVolume(V, a, b) {
+    static sideFromVolume(V, a, b) {
         return V / (a * b);
     }
 
@@ -90,7 +90,7 @@ export default class Cuboid {
      * @returns                 &radic;(d&#178;-a&#178;-b&#178;)
      * @static
      */
-    sideFromDiagonal(d, a, b) {
+    static sideFromDiagonal(d, a, b) {
         return Math.sqrt(d ** 2 - a ** 2 - b ** 2);
     }
 }

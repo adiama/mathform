@@ -40,8 +40,8 @@
     "gzipped": 1254
   },
   "mathform.umd.js": {
-    "bundled": 11917,
-    "minified": 2831,
-    "gzipped": 1373
+    "bundled": 29162,
+    "minified": 4222,
+    "gzipped": 1819
   }
 }

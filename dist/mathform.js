@@ -22,10 +22,6 @@ DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 /**
- * @namespace geometry
- */
-
-/**
  * Formulas related to circles.
  *
  * @class Circle
@@ -33,7 +29,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
  */
 class Circle {
     /**
-     * Area of a circle.
+     * Calculates the area of a circle from its radius.
      *
      * @example
      * // returns 50.26548245743669
@@ -49,7 +45,7 @@ class Circle {
     }
 
     /**
-     * Circumference of a circle.
+     * Calculates the circumference of a circle from its radius.
      *
      * @example
      * // returns 25.132741228718345
@@ -65,7 +61,7 @@ class Circle {
     }
 
     /**
-     * Diameter of a circle.
+     * Calculates the diameter of a circle from its radius.
      *
      * @example
      * // returns 8
@@ -81,7 +77,7 @@ class Circle {
     }
 
     /**
-     * Calculates the radius from area.
+     * Calculates the radius of a circle from its area.
      *
      * @example
      * // returns 4
@@ -97,7 +93,7 @@ class Circle {
     }
 
     /**
-     * Calculates the radius from circumference.
+     * Calculates the radius of a circle from its circumference.
      *
      * @example
      * // returns 4
@@ -113,7 +109,7 @@ class Circle {
     }
 
     /**
-     * Calculates radius from diameter.
+     * Calculates radius of a circle from its diameter.
      *
      * @example
      * // returns 4
@@ -127,33 +123,7 @@ class Circle {
     static radiusFromDiameter(d) {
         return d / 2;
     }
-
-    /**
-     * Checks if the given input is greater than 0.
-     *  If not, it throws an error.
-     *
-     * @example
-     * // throws 'Radius must be greater than 0.'
-     * this._isGreaterThanZero(-1, 'Radius');
-     *
-     * // passes
-     * this._isGreaterThanZero(1, 'Area');
-     *
-     * @param   {number} input  -   Input value
-     * @param   {string} name   -   Variable name to be tested
-     * @throws  {Error}             When input < 0
-     * @private
-     */
-    _isGreaterThanZero(input, name) {
-        if (input < 0) {
-            throw new Error(`${name} must be greater than 0.`);
-        }
-    }
 }
-
-/**
- * @namespace geometry
- */
 
 /**
  * Formulas related to triangles.
@@ -163,12 +133,15 @@ class Circle {
  */
 class Triangle {
     /**
-     * Area of a Triangle.
+     * Calculates area of a triangle from its base and height.
+     *
+     * @example
+     * mathform.geometry.Triangle.area(1, 1); // 0.5
      *
      * @memberof! geometry.Triangle#
      * @param   {number} h  -   Height
      * @param   {number} b  -   Base
-     * @returns {number}        <sup>1</sup>&frasl;<sub>2</sub>hb
+     * @returns {number}        (<sup>1</sup>&frasl;<sub>2</sub>)hb
      * @static
      */
     static area(h, b) {
@@ -176,7 +149,115 @@ class Triangle {
     }
 
     /**
-     * Calculate the hypotenuse of a right triangle.
+     * Calculates the altitude of a triangle from its area and base.
+     *
+     * @example
+     * mathform.geometry.Triangle.altitude(0.5, 1); // 1
+     *
+     * @memberof! geometry.Triangle#
+     * @param   {number} A  -   Area
+     * @param   {number} b  -   Base
+     * @returns {number}        2(<sup>A</sup>&frasl;<sub>b</sub>)
+     * @static
+     */
+    static altitude(A, b) {
+        return 2 * (A / b);
+    }
+
+    /**
+     * Calculates the base of a triangle from its area and height.
+     *
+     * @example
+     * mathform.geometry.Triangle.base(0.5, 1); // 1
+     *
+     * @memberof! geometry.Triangle#
+     * @param   {number} A  -   Area
+     * @param   {number} h  -   Height
+     * @returns {number}        2(<sup>A</sup>&frasl;<sub>h</sub>)
+     * @static
+     */
+    static base(A, h) {
+        return 2 * (A / h);
+    }
+
+    /**
+     * Calculates the perimeter of a triangle from its sides.
+     *
+     * @example
+     * mathform.geometry.Triangle.perimeter(1, 1, 1); // 3
+     *
+     * @memberof! geometry.Triangle#
+     * @param   {number} a  -   Side a
+     * @param   {number} b  -   Side b
+     * @param   {number} c  -   Side c
+     * @returns {number}        a+b+c
+     * @static
+     */
+    static perimeter(a, b, c) {
+        return a + b + c;
+    }
+
+    /**
+     * Calculates the semiperimeter of a triangle from its perimeter.
+     *
+     * @example
+     * mathform.geometry.Triangle.semiperimeter(2); // 1
+     *
+     * @memberof! geometry.Triangle#
+     * @param   {number} p -    The perimeter of the triangle
+     * @returns {number}        <sup>p</sup>&frasl;<sub>2</sub>
+     * @static
+     */
+    static semiperimeter(p) {
+        return p / 2;
+    }
+
+    /**
+     * Uses Heron's formula to calculate a triangle's area.
+     *
+     * Knowns Side-Side-Side
+     *
+     * @example
+     * mathform.geometry.Triangle.areaSSS(3, 4, 5); // 6
+     *
+     * @memberof! geometry.Triangle#
+     * @param   {number} a  -   Side a
+     * @param   {number} b  -   Side b
+     * @param   {number} c  -   Side c
+     * @returns {number}        &radic;s(s-a)(s-b)(s-c)
+     * @static
+     */
+    static areaSSS(a, b, c) {
+        const p = this.perimeter(a, b, c);
+        const s = this.semiperimeter(p);
+        return Math.sqrt(s * (s - a) * (s - b) * (s - c));
+    }
+
+    /**
+     * Calculates the area of a triangle from Side-Angle-Side.
+     *
+     * Knowns Side-Angle-Side
+     *
+     * @example
+     * let theta = mathform.convert.degreesToRadians(90);
+     * mathform.geometry.Triangle.areaSAS(3, 4, theta); // 6
+     *
+     * @memberof! geometry.Triangle#
+     * @param   {number} a        - Side a
+     * @param   {number} b        - Side b
+     * @param   {number} theta    - Angle &theta;, in **radians**
+     * @returns {number}            (<sup>1</sup>&frasl;<sub>2</sub>)ab sin &theta;
+     * @static
+     */
+    static areaSAS(a, b, theta) {
+        return (1 / 2) * a * b * Math.sin(theta);
+    }
+
+    /**
+     * Uses the Pythagorean theorem to calculate the hypotenuse of a right triangle.
+     *
+     * @example
+     * mathform.geometry.Triangle.hypotenuse(3, 4); // 5
      *
      * @memberof! geometry.Triangle#
      * @param   {number} a  -   Length of side a
@@ -190,23 +271,31 @@ class Triangle {
 
     /**
      * Uses Pythagorean Theorem to determine if a triangle of sides a, b, c is a right triangle.
-     * The side c is should be the longest as it is considered the hypotenuse.
+     * Any side in the arguments can be used as the hypotenuse.
+     *
+     * @example
+     * mathform.geometry.Triangle.isRight(3, 4, 5); // true
+     * mathform.geometry.Triangle.isRight(1, 1, 1); // false
      *
      * @memberof! geometry.Triangle#
      * @param   {number} a  -   Side of length a
      * @param   {number} b  -   Side of length b
      * @param   {number} c  -   Side of length c
-     * @returns {boolean}       c&#178;&equiv;a&#178;+b&#178;
+     * @returns {boolean}       c&#178;&equiv;a&#178;+b&#178; OR a&#178;&equiv;b&#178;+c&#178; OR b&#178;&equiv;a&#178;+c&#178;
      * @static
      */
     static isRight(a, b, c) {
-        return c ** 2 === a ** 2 + b ** 2;
+        const con1 = a ** 2 === b ** 2 + c ** 2;
+        const con2 = b ** 2 === a ** 2 + c ** 2;
+        const con3 = c ** 2 === a ** 2 + b ** 2;
+        return con1 || con2 || con3;
     }
-}
 
-/**
- * @namespace geometry
- */
+    /**
+     * TODO: add functions for missing angles and sides with trigonometric functions
+     *      - https://www.mathsisfun.com/algebra/trig-solving-triangles.html
+     */
+}
 
 /**
  * Formulas related to rectangles.
@@ -216,57 +305,70 @@ class Triangle {
  */
 class Rectangle {
     /**
+     * Calculates the area of a rectangle from width and height
+     *
+     * @example
+     * mathform.geometry.Rectangle.area(2, 2); // 4
      *
      * @memberof! geometry.Rectangle#
-     * @param {number} a    -
-     * @param {number} b    -
-     * @returns {number}
+     * @param   {number} w    - width
+     * @param   {number} h    - height
+     * @returns {number}        wh
      * @static
      */
-    static area(a, b) {
-        return a * b;
+    static area(w, h) {
+        return w * h;
     }
 
     /**
+     * Calculates the area of a rectangle from width and height
+     *
+     * @example
+     * mathform.geometry.Rectangle.circumference(2, 2); // 8
      *
      * @memberof! geometry.Rectangle#
-     * @param {number} a    -
-     * @param {number} b    -
-     * @returns {number}
+     * @param   {number} w    - width
+     * @param   {number} h    - height
+     * @returns {number}        2w+2h
      * @static
      */
-    static circumference(a, b) {
-        return a * 2 + b * 2;
+    static circumference(w, h) {
+        return w * 2 + h * 2;
     }
 
     /**
+     * Calculates the area of a rectangle from width and height
+     *
+     * @example
+     * mathform.geometry.Rectangle.diagonal(1, 1); // sqrt(2)
      *
      * @memberof! geometry.Rectangle#
-     * @param {number} a    -
-     * @param {number} b    -
-     * @returns {number}
+     * @param   {number} w    - width
+     * @param   {number} h    - height
+     * @returns {number}        &radic;w&#178;+h&#178;
      * @static
      */
-    static diagonal(a, b) {
-        return Triangle.Hypotenuse(a, b);
+    static diagonal(w, h) {
+        return Triangle.hypotenuse(w, h);
     }
 
     /**
+     * Evaluates if a rectangle is a square based on its width and height
+     *
+     * @example
+     * mathform.geometry.Rectangle.isSquare(2, 2); // true
+     * mathform.geometry.Rectangle.isSquare(1, 2); // false
      *
      * @memberof! geometry.Rectangle#
-     * @param {number} a    -
-     * @param {number} b    -
-     * @returns {boolean}
+     * @param   {number} w    - width
+     * @param   {number} h    - height
+     * @returns {boolean}       w&equiv;h
      * @static
      */
-    static isSquare(a, b) {
-        return a === b;
+    static isSquare(w, h) {
+        return w === h;
     }
 }
-
-/**
- * @namespace geometry
- */
 
 /**
  * Formulas related to cones.
@@ -276,57 +378,76 @@ class Rectangle {
  */
 class Cone {
     /**
+     * Calculates the slant height of a cone
+     *
+     * @example
+     * mathform.geometry.Cone.slantHeight(1, 2); // ~2.24
      *
      * @memberof! geometry.Cone#
-     * @param {number} r    -
-     * @param {number} h    -
-     * @returns {number}
+     * @param   {number} r    - radius
+     * @param   {number} h    - height
+     * @returns {number}        &radic;r&#178;+h&#178;
      * @static
      */
     static slantHeight(r, h) {
-        return Triangle.Hypotenuse(r, h);
+        return Triangle.hypotenuse(r, h);
     }
 
     /**
+     * Calculates the lateral area of a cone
+     *
+     * @example
+     * mathform.geometry.Cone.lateralArea(1, 2); // ~7.02
      *
      * @memberof! geometry.Cone#
-     * @param {number} r    -
-     * @param {number} h    -
-     * @returns {number}
+     * @param   {number} r    - radius
+     * @param   {number} h    - height
+     * @returns {number}        &pi;r(&radic;r&#178;+h&#178;)
      * @static
      */
     static lateralArea(r, h) {
-        return Math.PI * r * this.SlantHeight(r, h);
+        return Math.PI * r * this.slantHeight(r, h);
     }
 
     /**
+     * Calculates the total area of a cone
+     *
+     * @example
+     * mathform.geometry.Cone.totalArea(1, 2); // ~10.17
      *
      * @memberof! geometry.Cone#
-     * @param {number} r    -
-     * @param {number} h    -
-     * @returns {number}
+     * @param   {number} r    - radius
+     * @param   {number} h    - height
+     * @returns {number}        &pi;r(&radic;r&#178;+h&#178;)+&pi;r&#178;
      * @static
      */
     static totalArea(r, h) {
-        return this.LateralArea(r, h) + Circle.Area(r);
+        // factored
+        // return Math.PI * r * (r + Math.sqrt(h ** 2 + r ** 2));
+        return this.lateralArea(r, h) + Circle.area(r);
     }
 
     /**
+     * Calculates the volume of a cone
+     *
+     * @example
+     * mathform.geometry.Cone.volume(1, 2); // ~2.09
      *
      * @memberof! geometry.Cone#
-     * @param {number} r    -
-     * @param {number} h    -
-     * @returns {number}
+     * @param   {number} r    - radius
+     * @param   {number} h    - height
+     * @returns {number}        (<sup>1</sup>&frasl;<sub>3</sub>)&pi;r&#178h;
      * @static
      */
     static volume(r, h) {
         return (1 / 3) * Math.PI * r ** 2 * h;
     }
-}
 
-/**
- * @namespace geometry
- */
+    /**
+     * TODO: add functions for finding
+     *  - radius
+     */
+}
 
 /**
  * Formulas related to cylinders.
@@ -336,11 +457,15 @@ class Cone {
  */
 class Cylinder {
     /**
+     * Calculates the lateral area of a cylinder
+     *
+     * @example
+     * mathform.geometry.Cylinder.lateralArea(); // ~6.28
      *
      * @memberof! geometry.Cylinder#
-     * @param {number} r    -
-     * @param {number} h    -
-     * @returns {number}
+     * @param   {number} r    - radius
+     * @param   {number} h    - height
+     * @returns {number}        2&pi;rh
      * @static
      */
     static lateralArea(r, h) {
@@ -348,33 +473,41 @@ class Cylinder {
     }
 
     /**
+     * Calculates the lateral area of a cylinder
+     *
+     * @example
+     * mathform.geometry.Cylinder.totalArea(1, 1); // ~12.57
      *
      * @memberof! geometry.Cylinder#
-     * @param {number} r    -
-     * @param {number} h    -
-     * @returns {number}
+     * @param   {number} r    - radius
+     * @param   {number} h    - height
+     * @returns {number}        2&pi;rh+2&pi;r&#178;
      * @static
      */
     static totalArea(r, h) {
-        return Cylinder.Area(r, h) + 2 * Circle.Area(r);
+        return Cylinder.lateralArea(r, h) + 2 * Circle.area(r);
     }
 
     /**
+     * Calculates the lateral area of a cylinder
+     *
+     * @example
+     * mathform.geometry.Cylinder.volume(1, 1); // ~3.14
      *
      * @memberof! geometry.Cylinder#
-     * @param {number} r    -
-     * @param {number} h    -
-     * @returns {number}
+     * @param   {number} r    - radius
+     * @param   {number} h    - height
+     * @returns {number}        &pi;r&#178;h
      * @static
      */
     static volume(r, h) {
         return Math.PI * r ** 2 * h;
     }
-}
 
-/**
- * @namespace geometry
- */
+    /**
+     * TODO: add functions for finding radius
+     */
+}
 
 /**
  * Formulas related to spheres.
@@ -384,25 +517,135 @@ class Cylinder {
  */
 class Sphere {
     /**
+     * Calculates the surface area of a sphere
+     *
+     * @example
+     * mathform.geometry.Sphere.area(2) // ~50.27
      *
      * @memberof! geometry.Sphere#
-     * @param {number} r    -
-     * @returns {number}
+     * @param   {number} r    - radius
+     * @returns {number}        4&pi;r&#178;
      * @static
      */
-    static surfaceArea(r) {
+    static area(r) {
         return 4 * Math.PI * r ** 2;
     }
 
     /**
+     * Calculates the volume of a sphere
+     *
+     * @example
+     * mathform.geometry.Sphere.volume(2) // ~33.51
      *
      * @memberof! geometry.Sphere#
-     * @param {number} r    -
-     * @returns {number}
+     * @param   {number} r    - radius
+     * @returns {number}        (<sup>4</sup>&frasl;<sub>3</sub>)&pi;r&#179;
      * @static
      */
     static volume(r) {
         return (4 / 3) * Math.PI * r ** 3;
+    }
+
+    /**
+     * TODO: add functions for
+     *  - diameter
+     *  - radiusFrom
+     *      - volume
+     *      - area
+     *      - diameter
+     */
+}
+
+/**
+ * Formulas related to cuboids.
+ *
+ * @class Cuboid
+ * @memberof geometry
+ */
+class Cuboid {
+    /**
+     * Calculates the volume of a cuboid from its width, length and height.
+     *
+     * @example
+     * mathform.geometry.Cuboid.volume(1, 2, 3); // 6
+     *
+     * @memberof! geometry.Cuboid#
+     * @param   {number} w -    width
+     * @param   {number} h -    height
+     * @param   {number} l -    length
+     * @returns                 whl
+     * @static
+     */
+    static volume(w, h, l) {
+        return w * h * l;
+    }
+
+    /**
+     * Calculates the area of a cuboid from its width, length and height.
+     *
+     * @example
+     * mathform.geometry.Cuboid.area(1, 2, 3); // 22
+     *
+     * @memberof! geometry.Cuboid#
+     * @param   {number} w -    width
+     * @param   {number} h -    height
+     * @param   {number} l -    length
+     * @returns                 2(wl+hl+lw)
+     * @static
+     */
+    static area(w, h, l) {
+        return 2 * (w * l + h * l + h * w);
+    }
+
+    /**
+     * Calculates the diagonal of a cuboid from its width, length and height.
+     *
+     * @example
+     * mathform.geometry.Cuboid.diagonal(1, 2, 3); // ~3.74
+     *
+     * @memberof! geometry.Cuboid#
+     * @param   {number} w -    width
+     * @param   {number} h -    height
+     * @param   {number} l -    length
+     * @returns                 &radic;(w&#178;+h&#178;+l&#178;)
+     * @static
+     */
+    static diagonal(w, h, l) {
+        return Math.sqrt(w ** 2 + h ** 2 + l ** 2);
+    }
+
+    /**
+     * Calculates a side of a cuboid from its other 2 sides and its Volume.
+     *
+     * @example
+     * mathform.geometry.Cuboid.sideFromVolume(1, 1, 1); // 1
+     *
+     * @memberof! geometry.Cuboid#
+     * @param   {number} V -    Volume
+     * @param   {number} a -    side a
+     * @param   {number} b -    side b
+     * @returns                 <sup>V</sup>&frasl;<sub>ab</sub>
+     * @static
+     */
+    static sideFromVolume(V, a, b) {
+        return V / (a * b);
+    }
+
+    /**
+     * Calculates a side of a cuboid from its other 2 sides and its diagonal.
+     *
+     * @example
+     * mathform.geometry.Cuboid.sideFromDiagonal(2, 1, 1); // sqrt(2)
+     *
+     * @memberof! geometry.Cuboid#
+     * @param   {number} d -    diagonal
+     * @param   {number} a -    side a
+     * @param   {number} b -    side b
+     * @returns                 &radic;(d&#178;-a&#178;-b&#178;)
+     * @static
+     */
+    static sideFromDiagonal(d, a, b) {
+        return Math.sqrt(d ** 2 - a ** 2 - b ** 2);
     }
 }
 
@@ -413,8 +656,264 @@ var index = /*#__PURE__*/Object.freeze({
     Rectangle: Rectangle,
     Cone: Cone,
     Cylinder: Cylinder,
-    Sphere: Sphere
+    Sphere: Sphere,
+    Cuboid: Cuboid
 });
+
+/**
+ * @namespace convert
+ */
+
+/**
+ * Converts degrees to radians
+ *
+ * @example
+ * mathform.convert.degreesToRadians(180) // ~3.14159...
+ *
+ * @memberof convert
+ * @param   {number} degrees
+ * @returns {number}            radians
+ */
+function degreesToRadians(degrees) {
+    return (degrees * Math.PI) / 180;
+}
+
+/**
+ * Converts radians to degrees
+ *
+ * @example
+ * mathform.convert.radiansToDegrees(Math.PI) // 180
+ *
+ * @memberof convert
+ * @param   {number} radians
+ * @returns {number}            degrees
+ */
+function radiansToDegrees(radians) {
+    return (radians * 180) / Math.PI;
+}
+
+/**
+ * Normalizes a value
+ *
+ * @example
+ * mathform.convert.normalize(150, 100, 200) // 0.5
+ *
+ * @memberof convert
+ * @param   {number} value
+ * @param   {number} min
+ * @param   {number} max
+ * @returns {number}        float from 0 and 1
+ */
+function normalize(value, min, max) {
+    return (value - min) / (max - min);
+}
+
+var convert = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    degreesToRadians: degreesToRadians,
+    radiansToDegrees: radiansToDegrees,
+    normalize: normalize
+});
+
+/**
+ * @namespace rng
+ */
+
+/**
+ * Random Integer generator based on Math.random()
+ * inclusive min, inclusive max
+ *
+ * @example
+ * console.log(rng.generateRandomInteger(0, 5));    // 5
+ * console.log(rng.generateRandomInteger(0, 5));    // 4
+ * console.log(rng.generateRandomInteger(0, 5));    // 4
+ * console.log(rng.generateRandomInteger(0, 5));    // 0
+ * console.log(rng.generateRandomInteger(0, 5));    // 5
+ *
+ * console.log(rng.generateRandomInteger(0, 100));  // 45
+ * console.log(rng.generateRandomInteger(0, 100));  // 52
+ * console.log(rng.generateRandomInteger(0, 100));  // 45
+ * console.log(rng.generateRandomInteger(90, 100)); // 94
+ * console.log(rng.generateRandomInteger(90, 100)); // 99
+ *
+ * @memberof rng
+ * @param {number}  min
+ * @param {number}  max
+ * @returns {number}        Integer of range min, max
+ */
+function generateRandomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/**
+ * Random Float generator based on Math.random()
+ * inclusive min, exclusive max
+ *
+ * @example
+ * console.log(rng.generateRandomFloat(0, 0.001));      // 0.00026509881625332786
+ * console.log(rng.generateRandomFloat(0, 0.001));      // 0.00007506891359581824
+ * console.log(rng.generateRandomFloat(0, 0.001));      // 0.00044325961245963644
+ * console.log(rng.generateRandomFloat(0, 0.001));      // 0.0009738804824279097
+ * console.log(rng.generateRandomFloat(0, 0.001));      // 0.00037007902123962523
+ *
+ * console.log(rng.generateRandomFloat(0, 1));          // 0.5439056343074258
+ * console.log(rng.generateRandomFloat(0, 1));          // 0.7389564454471567
+ * console.log(rng.generateRandomFloat(0, 1));          // 0.8800660182555697
+ * console.log(rng.generateRandomFloat(0, 1));          // 0.028073711000210277
+ * console.log(rng.generateRandomFloat(0, 1));          // 0.45954615798738296
+ *
+ * console.log(rng.generateRandomFloat(1, 2));          // 1.8467985822932083
+ * console.log(rng.generateRandomFloat(2, 3));          // 2.603690406049185
+ * console.log(rng.generateRandomFloat(3, 30));         // 14.428615314773008
+ * console.log(rng.generateRandomFloat(50, 100));       // 78.90222904220667
+ * console.log(rng.generateRandomFloat(1000, 10000));   // 8798.862959284734
+ *
+ * @memberof rng
+ * @param {number}  min
+ * @param {number}  max
+ * @returns {number}        Float of range min, max
+ */
+function generateRandomFloat(min, max) {
+    return parseFloat(Math.random() * (max - min) + min);
+}
+
+/**
+ * Linear Congruential Generator
+ *
+ * Learn more
+ *  - [wikipedia]{@link https://en.wikipedia.org/wiki/Linear_congruential_generator}
+ *  - [rosettacode]{@link https://rosettacode.org/wiki/Linear_congruential_generator}
+ *  - [ams]{@link https://www.ams.org/journals/mcom/1999-68-225/S0025-5718-99-00996-5/S0025-5718-99-00996-5.pdf}
+ *
+ * @example
+ * import { rng } from 'mathform';
+ *
+ * // ZX81 parameters
+ * // (see wikipedia or ams links provided above for more parameters)
+ * let modulus = 2 ** 16 + 1;
+ * let multiplier = 75;
+ * let increment = 74;
+ * let seed = Math.floor(Math.random() * 2 ** 16);
+ *
+ * // Create the LCG objet
+ * let lcg = new rng.LCG(modulus, multiplier, increment, seed);
+ *
+ * // Usage
+ * lcg.step() // returns a random number where 0 <= number <= 2 ** 16
+ *
+ * @class LCG
+ * @memberof rng
+ */
+class LCG {
+    get modulus() {
+        return this._m;
+    }
+
+    get multiplier() {
+        return this._a;
+    }
+
+    get increment() {
+        return this._c;
+    }
+
+    get seed() {
+        return this._X;
+    }
+
+    /**
+     * The generator is defined by the recurrence relation
+     *  - X<sub>0</sub> = (aX<sub>n</sub> + c) mod m
+     *
+     * Were
+     * - 0 < m
+     * - 0 < a < m
+     * - 0 <= c < m
+     * - 0 <= X<sub>0</sub> < m
+     *
+     * @memberof! rng.LCG#
+     * @param {integer} Modulus     - 0 < m
+     * @param {integer} Multiplier  - 0 < a < m
+     * @param {integer} Increment   - 0 <= c < m
+     * @param {number}  Seed        - 0 <= X0 < m
+     * @constructor
+     */
+    constructor(modulus, multiplier, increment, seed) {
+        this._m = modulus;
+        this._a = multiplier;
+        this._c = increment;
+        this._X = seed;
+    }
+
+    /**
+     * Iterates the algorithm once and returns the new seed
+     *
+     * @memberof! rng.LCG#
+     * @returns {integer}
+     * @public
+     */
+    step() {
+        this._iterate();
+        return this.seed;
+    }
+
+    /**
+     * Iterates the algorithm once
+     *
+     * @memberof! rng.LCG#
+     * @private
+     */
+    _iterate() {
+        this._X = (this.multiplier * this.seed + this.increment) % this.modulus;
+    }
+}
+
+var rng = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    generateRandomInteger: generateRandomInteger,
+    generateRandomFloat: generateRandomFloat,
+    LCG: LCG
+});
+
+/**
+ * @namespace helpers
+ */
+
+/**
+ * Checks if the given input is greater than 0.
+ *  Throws an error or returns boolean if strict parameter is passed as false.
+ *
+ * @example
+ * // throws 'Radius must be greater than 0.'
+ * this._isGreaterThanZero(-1, 'Radius');
+ *
+ * // returns false
+ * this._isGreaterThanZero(-1, 'Radius', false);
+ *
+ * // passes
+ * this._isGreaterThanZero(1, 'Area');
+ *
+ * // returns true
+ * this._isGreaterThanZero(1, 'Area', false);
+ *
+ * @memberof! helpers
+ * @param   {number}    input   -   Input value
+ * @param   {string}    name    -   Variable name
+ * @param   {boolean}   strict  -   Set to false if you need an exception instead. Default true
+ * @throws  {Error}                 When input < 0
+ * @returns {boolean}
+ */
+function isGreaterThanZero(input, name, strict = true) {
+    if (input <= 0) {
+        if (strict) {
+            throw new Error(`${name || 'Value'} must be greater than 0.`);
+        }
+
+        return false;
+    }
+
+    return true;
+}
 
 /**
  * Formats and rounds a number to the required precision.
@@ -428,6 +927,7 @@ var index = /*#__PURE__*/Object.freeze({
  * format("1.6", 0);    // 2
  * format(1, 100);      // 1
  *
+ * @memberof! helpers
  * @param   {number} value      -   The value to be formatted.
  * @param   {number} precision  -   0 to 100 number of floating point digits. Default 2.
  * @returns {number}                The formatted number.
@@ -436,5 +936,10 @@ function format(value, precision = 2) {
     return parseFloat(parseFloat(value).toFixed(precision));
 }
 
-export { format, index as geometry };
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWF0aGZvcm0uanMiLCJzb3VyY2VzIjpbIi4uL3NyYy9nZW9tZXRyeS9jaXJjbGUuanMiLCIuLi9zcmMvZ2VvbWV0cnkvdHJpYW5nbGUuanMiLCIuLi9zcmMvZ2VvbWV0cnkvcmVjdGFuZ2xlLmpzIiwiLi4vc3JjL2dlb21ldHJ5L2NvbmUuanMiLCIuLi9zcmMvZ2VvbWV0cnkvY3lsaW5kZXIuanMiLCIuLi9zcmMvZ2VvbWV0cnkvc3BoZXJlLmpzIiwiLi4vc3JjL2Zvcm1hdC5qcyJdLCJzb3VyY2VzQ29udGVudCI6WyIvKipcclxuICogQG5hbWVzcGFjZSBnZW9tZXRyeVxyXG4gKi9cclxuXHJcbi8qKlxyXG4gKiBGb3JtdWxhcyByZWxhdGVkIHRvIGNpcmNsZXMuXHJcbiAqXHJcbiAqIEBjbGFzcyBDaXJjbGVcclxuICogQG1lbWJlcm9mIGdlb21ldHJ5XHJcbiAqL1xyXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBDaXJjbGUge1xyXG4gICAgLyoqXHJcbiAgICAgKiBBcmVhIG9mIGEgY2lyY2xlLlxyXG4gICAgICpcclxuICAgICAqIEBleGFtcGxlXHJcbiAgICAgKiAvLyByZXR1cm5zIDUwLjI2NTQ4MjQ1NzQzNjY5XHJcbiAgICAgKiBtYXRoZm9ybS5nZW9tZXRyeS5DaXJjbGUuYXJlYSg0KTtcclxuICAgICAqXHJcbiAgICAgKiBAbWVtYmVyb2YhIGdlb21ldHJ5LkNpcmNsZSNcclxuICAgICAqIEBwYXJhbSAgIHtudW1iZXJ9IHIgIC0gICBSYWRpdXNcclxuICAgICAqIEByZXR1cm5zIHtudW1iZXJ9ICAgICAgICAmcGk7ciYjMTc4O1xyXG4gICAgICogQHN0YXRpY1xyXG4gICAgICovXHJcbiAgICBzdGF0aWMgYXJlYShyKSB7XHJcbiAgICAgICAgcmV0dXJuIE1hdGguUEkgKiByICoqIDI7XHJcbiAgICB9XHJcblxyXG4gICAgLyoqXHJcbiAgICAgKiBDaXJjdW1mZXJlbmNlIG9mIGEgY2lyY2xlLlxyXG4gICAgICpcclxuICAgICAqIEBleGFtcGxlXHJcbiAgICAgKiAvLyByZXR1cm5zIDI1LjEzMjc0MTIyODcxODM0NVxyXG4gICAgICogbWF0aGZvcm0uZ2VvbWV0cnkuQ2lyY2xlLmNpcmN1bWZlcmVuY2UoNCk7XHJcbiAgICAgKlxyXG4gICAgICogQG1lbWJlcm9mISBnZW9tZXRyeS5DaXJjbGUjXHJcbiAgICAgKiBAcGFyYW0gICB7bnVtYmVyfSByICAtICAgUmFkaXVzXHJcbiAgICAgKiBAcmV0dXJucyB7bnVtYmVyfSAgICAgICAgMiZwaTtyXHJcbiAgICAgKiBAc3RhdGljXHJcbiAgICAgKi9cclxuICAgIHN0YXRpYyBjaXJjdW1mZXJlbmNlKHIpIHtcclxuICAgICAgICByZXR1cm4gMiAqIE1hdGguUEkgKiByO1xyXG4gICAgfVxyXG5cclxuICAgIC8qKlxyXG4gICAgICogRGlhbWV0ZXIgb2YgYSBjaXJjbGUuXHJcbiAgICAgKlxyXG4gICAgICogQGV4YW1wbGVcclxuICAgICAqIC8vIHJldHVybnMgOFxyXG4gICAgICogbWF0aGZvcm0uZ2VvbWV0cnkuQ2lyY2xlLmRpYW1ldGVyKDQpXHJcbiAgICAgKlxyXG4gICAgICogQG1lbWJlcm9mISBnZW9tZXRyeS5DaXJjbGUjXHJcbiAgICAgKiBAcGFyYW0gICB7bnVtYmVyfSByICAtICAgUmFkaXVzXHJcbiAgICAgKiBAcmV0dXJucyB7bnVtYmVyfSAgICAgICAgMnJcclxuICAgICAqIEBzdGF0aWNcclxuICAgICAqL1xyXG4gICAgc3RhdGljIGRpYW1ldGVyKHIpIHtcclxuICAgICAgICByZXR1cm4gciAqIDI7XHJcbiAgICB9XHJcblxyXG4gICAgLyoqXHJcbiAgICAgKiBDYWxjdWxhdGVzIHRoZSByYWRpdXMgZnJvbSBhcmVhLlxyXG4gICAgICpcclxuICAgICAqIEBleGFtcGxlXHJcbiAgICAgKiAvLyByZXR1cm5zIDRcclxuICAgICAqIG1hdGhmb3JtLmdlb21ldHJ5LkNpcmNsZS5yYWRpdXNGcm9tQXJlYSg1MC4yNjU0ODI0NTc0MzY2OSk7XHJcbiAgICAgKlxyXG4gICAgICogQG1lbWJlcm9mISBnZW9tZXRyeS5DaXJjbGUjXHJcbiAgICAgKiBAcGFyYW0gICB7bnVtYmVyfSBBICAtICAgQXJlYVxyXG4gICAgICogQHJldHVybnMge251bWJlcn0gICAgICAgICZyYWRpYztBJmZyYXNsOyZwaTtcclxuICAgICAqIEBzdGF0aWNcclxuICAgICAqL1xyXG4gICAgc3RhdGljIHJhZGl1c0Zyb21BcmVhKEEpIHtcclxuICAgICAgICByZXR1cm4gTWF0aC5zcXJ0KEEgLyBNYXRoLlBJKTtcclxuICAgIH1cclxuXHJcbiAgICAvKipcclxuICAgICAqIENhbGN1bGF0ZXMgdGhlIHJhZGl1cyBmcm9tIGNpcmN1bWZlcmVuY2UuXHJcbiAgICAgKlxyXG4gICAgICogQGV4YW1wbGVcclxuICAgICAqIC8vIHJldHVybnMgNFxyXG4gICAgICogbWF0aGZvcm0uZ2VvbWV0cnkuQ2lyY2xlLnJhZGl1c0Zyb21DaXJjdW1mZXJlbmNlKDI1LjEzMjc0MTIyODcxODM0NSk7XHJcbiAgICAgKlxyXG4gICAgICogQG1lbWJlcm9mISBnZW9tZXRyeS5DaXJjbGUjXHJcbiAgICAgKiBAcGFyYW0gICB7bnVtYmVyfSBDICAtICAgQ2lyY3VtZmVyZW5jZVxyXG4gICAgICogQHJldHVybnMge251bWJlcn0gICAgICAgIEMmZnJhc2w7MiZwaTtcclxuICAgICAqIEBzdGF0aWNcclxuICAgICAqL1xyXG4gICAgc3RhdGljIHJhZGl1c0Zyb21DaXJjdW1mZXJlbmNlKEMpIHtcclxuICAgICAgICByZXR1cm4gQyAvICgyICogTWF0aC5QSSk7XHJcbiAgICB9XHJcblxyXG4gICAgLyoqXHJcbiAgICAgKiBDYWxjdWxhdGVzIHJhZGl1cyBmcm9tIGRpYW1ldGVyLlxyXG4gICAgICpcclxuICAgICAqIEBleGFtcGxlXHJcbiAgICAgKiAvLyByZXR1cm5zIDRcclxuICAgICAqIG1hdGhmb3JtLmdlb21ldHJ5LkNpcmNsZS5yYWRpdXNGcm9tRGlhbWV0ZXIoOCk7XHJcbiAgICAgKlxyXG4gICAgICogQG1lbWJlcm9mISBnZW9tZXRyeS5DaXJjbGUjXHJcbiAgICAgKiBAcGFyYW0gICB7bnVtYmVyfSBkICAtICAgRGlhbWV0ZXJcclxuICAgICAqIEByZXR1cm5zIHtudW1iZXJ9ICAgICAgICA8c3VwPmQ8L3N1cD4mZnJhc2w7PHN1Yj4yPC9zdWI+XHJcbiAgICAgKiBAc3RhdGljXHJcbiAgICAgKi9cclxuICAgIHN0YXRpYyByYWRpdXNGcm9tRGlhbWV0ZXIoZCkge1xyXG4gICAgICAgIHJldHVybiBkIC8gMjtcclxuICAgIH1cclxuXHJcbiAgICAvKipcclxuICAgICAqIENoZWNrcyBpZiB0aGUgZ2l2ZW4gaW5wdXQgaXMgZ3JlYXRlciB0aGFuIDAuXHJcbiAgICAgKiAgSWYgbm90LCBpdCB0aHJvd3MgYW4gZXJyb3IuXHJcbiAgICAgKlxyXG4gICAgICogQGV4YW1wbGVcclxuICAgICAqIC8vIHRocm93cyAnUmFkaXVzIG11c3QgYmUgZ3JlYXRlciB0aGFuIDAuJ1xyXG4gICAgICogdGhpcy5faXNHcmVhdGVyVGhhblplcm8oLTEsICdSYWRpdXMnKTtcclxuICAgICAqXHJcbiAgICAgKiAvLyBwYXNzZXNcclxuICAgICAqIHRoaXMuX2lzR3JlYXRlclRoYW5aZXJvKDEsICdBcmVhJyk7XHJcbiAgICAgKlxyXG4gICAgICogQHBhcmFtICAge251bWJlcn0gaW5wdXQgIC0gICBJbnB1dCB2YWx1ZVxyXG4gICAgICogQHBhcmFtICAge3N0cmluZ30gbmFtZSAgIC0gICBWYXJpYWJsZSBuYW1lIHRvIGJlIHRlc3RlZFxyXG4gICAgICogQHRocm93cyAge0Vycm9yfSAgICAgICAgICAgICBXaGVuIGlucHV0IDwgMFxyXG4gICAgICogQHByaXZhdGVcclxuICAgICAqL1xyXG4gICAgX2lzR3JlYXRlclRoYW5aZXJvKGlucHV0LCBuYW1lKSB7XHJcbiAgICAgICAgaWYgKGlucHV0IDwgMCkge1xyXG4gICAgICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYCR7bmFtZX0gbXVzdCBiZSBncmVhdGVyIHRoYW4gMC5gKTtcclxuICAgICAgICB9XHJcbiAgICB9XHJcbn1cclxuIiwiLyoqXHJcbiAqIEBuYW1lc3BhY2UgZ2VvbWV0cnlcclxuICovXHJcblxyXG4vKipcclxuICogRm9ybXVsYXMgcmVsYXRlZCB0byB0cmlhbmdsZXMuXHJcbiAqXHJcbiAqIEBjbGFzcyBUcmlhbmdsZVxyXG4gKiBAbWVtYmVyb2YgZ2VvbWV0cnlcclxuICovXHJcbmV4cG9ydCBkZWZhdWx0IGNsYXNzIFRyaWFuZ2xlIHtcclxuICAgIC8qKlxyXG4gICAgICogQXJlYSBvZiBhIFRyaWFuZ2xlLlxyXG4gICAgICpcclxuICAgICAqIEBtZW1iZXJvZiEgZ2VvbWV0cnkuVHJpYW5nbGUjXHJcbiAgICAgKiBAcGFyYW0gICB7bnVtYmVyfSBoICAtICAgSGVpZ2h0XHJcbiAgICAgKiBAcGFyYW0gICB7bnVtYmVyfSBiICAtICAgQmFzZVxyXG4gICAgICogQHJldHVybnMge251bWJlcn0gICAgICAgIDxzdXA+MTwvc3VwPiZmcmFzbDs8c3ViPjI8L3N1Yj5oYlxyXG4gICAgICogQHN0YXRpY1xyXG4gICAgICovXHJcbiAgICBzdGF0aWMgYXJlYShoLCBiKSB7XHJcbiAgICAgICAgcmV0dXJuICgxIC8gMikgKiBoICogYjtcclxuICAgIH1cclxuXHJcbiAgICAvKipcclxuICAgICAqIENhbGN1bGF0ZSB0aGUgaHlwb3RlbnVzZSBvZiBhIHJpZ2h0IHRyaWFuZ2xlLlxyXG4gICAgICpcclxuICAgICAqIEBtZW1iZXJvZiEgZ2VvbWV0cnkuVHJpYW5nbGUjXHJcbiAgICAgKiBAcGFyYW0gICB7bnVtYmVyfSBhICAtICAgTGVuZ3RoIG9mIHNpZGUgYVxyXG4gICAgICogQHBhcmFtICAge251bWJlcn0gYiAgLSAgIExlbmd0aCBvZiBzaWRlIGJcclxuICAgICAqIEByZXR1cm5zIHtudW1iZXJ9ICAgICAgICAmcmFkaWM7YSYjMTc4OytiJiMxNzg7XHJcbiAgICAgKiBAc3RhdGljXHJcbiAgICAgKi9cclxuICAgIHN0YXRpYyBoeXBvdGVudXNlKGEsIGIpIHtcclxuICAgICAgICByZXR1cm4gTWF0aC5zcXJ0KGEgKiogMiArIGIgKiogMik7XHJcbiAgICB9XHJcblxyXG4gICAgLyoqXHJcbiAgICAgKiBVc2VzIFB5dGhhZ29yZWFuIFRoZW9yZW0gdG8gZGV0ZXJtaW5lIGlmIGEgdHJpYW5nbGUgb2Ygc2lkZXMgYSwgYiwgYyBpcyBhIHJpZ2h0IHRyaWFuZ2xlLlxyXG4gICAgICogVGhlIHNpZGUgYyBpcyBzaG91bGQgYmUgdGhlIGxvbmdlc3QgYXMgaXQgaXMgY29uc2lkZXJlZCB0aGUgaHlwb3RlbnVzZS5cclxuICAgICAqXHJcbiAgICAgKiBAbWVtYmVyb2YhIGdlb21ldHJ5LlRyaWFuZ2xlI1xyXG4gICAgICogQHBhcmFtICAge251bWJlcn0gYSAgLSAgIFNpZGUgb2YgbGVuZ3RoIGFcclxuICAgICAqIEBwYXJhbSAgIHtudW1iZXJ9IGIgIC0gICBTaWRlIG9mIGxlbmd0aCBiXHJcbiAgICAgKiBAcGFyYW0gICB7bnVtYmVyfSBjICAtICAgU2lkZSBvZiBsZW5ndGggY1xyXG4gICAgICogQHJldHVybnMge2Jvb2xlYW59ICAgICAgIGMmIzE3ODsmZXF1aXY7YSYjMTc4OytiJiMxNzg7XHJcbiAgICAgKiBAc3RhdGljXHJcbiAgICAgKi9cclxuICAgIHN0YXRpYyBpc1JpZ2h0KGEsIGIsIGMpIHtcclxuICAgICAgICByZXR1cm4gYyAqKiAyID09PSBhICoqIDIgKyBiICoqIDI7XHJcbiAgICB9XHJcbn1cclxuIiwiaW1wb3J0IFRyaWFuZ2xlIGZyb20gJy4vdHJpYW5nbGUuanMnO1xyXG5cclxuLyoqXHJcbiAqIEBuYW1lc3BhY2UgZ2VvbWV0cnlcclxuICovXHJcblxyXG4vKipcclxuICogRm9ybXVsYXMgcmVsYXRlZCB0byByZWN0YW5nbGVzLlxyXG4gKlxyXG4gKiBAY2xhc3MgUmVjdGFuZ2xlXHJcbiAqIEBtZW1iZXJvZiBnZW9tZXRyeVxyXG4gKi9cclxuZXhwb3J0IGRlZmF1bHQgY2xhc3MgUmVjdGFuZ2xlIHtcclxuICAgIC8qKlxyXG4gICAgICpcclxuICAgICAqIEBtZW1iZXJvZiEgZ2VvbWV0cnkuUmVjdGFuZ2xlI1xyXG4gICAgICogQHBhcmFtIHtudW1iZXJ9IGEgICAgLVxyXG4gICAgICogQHBhcmFtIHtudW1iZXJ9IGIgICAgLVxyXG4gICAgICogQHJldHVybnMge251bWJlcn1cclxuICAgICAqIEBzdGF0aWNcclxuICAgICAqL1xyXG4gICAgc3RhdGljIGFyZWEoYSwgYikge1xyXG4gICAgICAgIHJldHVybiBhICogYjtcclxuICAgIH1cclxuXHJcbiAgICAvKipcclxuICAgICAqXHJcbiAgICAgKiBAbWVtYmVyb2YhIGdlb21ldHJ5LlJlY3RhbmdsZSNcclxuICAgICAqIEBwYXJhbSB7bnVtYmVyfSBhICAgIC1cclxuICAgICAqIEBwYXJhbSB7bnVtYmVyfSBiICAgIC1cclxuICAgICAqIEByZXR1cm5zIHtudW1iZXJ9XHJcbiAgICAgKiBAc3RhdGljXHJcbiAgICAgKi9cclxuICAgIHN0YXRpYyBjaXJjdW1mZXJlbmNlKGEsIGIpIHtcclxuICAgICAgICByZXR1cm4gYSAqIDIgKyBiICogMjtcclxuICAgIH1cclxuXHJcbiAgICAvKipcclxuICAgICAqXHJcbiAgICAgKiBAbWVtYmVyb2YhIGdlb21ldHJ5LlJlY3RhbmdsZSNcclxuICAgICAqIEBwYXJhbSB7bnVtYmVyfSBhICAgIC1cclxuICAgICAqIEBwYXJhbSB7bnVtYmVyfSBiICAgIC1cclxuICAgICAqIEByZXR1cm5zIHtudW1iZXJ9XHJcbiAgICAgKiBAc3RhdGljXHJcbiAgICAgKi9cclxuICAgIHN0YXRpYyBkaWFnb25hbChhLCBiKSB7XHJcbiAgICAgICAgcmV0dXJuIFRyaWFuZ2xlLkh5cG90ZW51c2UoYSwgYik7XHJcbiAgICB9XHJcblxyXG4gICAgLyoqXHJcbiAgICAgKlxyXG4gICAgICogQG1lbWJlcm9mISBnZW9tZXRyeS5SZWN0YW5nbGUjXHJcbiAgICAgKiBAcGFyYW0ge251bWJlcn0gYSAgICAtXHJcbiAgICAgKiBAcGFyYW0ge251bWJlcn0gYiAgICAtXHJcbiAgICAgKiBAcmV0dXJucyB7Ym9vbGVhbn1cclxuICAgICAqIEBzdGF0aWNcclxuICAgICAqL1xyXG4gICAgc3RhdGljIGlzU3F1YXJlKGEsIGIpIHtcclxuICAgICAgICByZXR1cm4gYSA9PT0gYjtcclxuICAgIH1cclxufVxyXG4iLCJpbXBvcnQgQ2lyY2xlIGZyb20gJy4vY2lyY2xlLmpzJztcclxuaW1wb3J0IFRyaWFuZ2xlIGZyb20gJy4vdHJpYW5nbGUuanMnO1xyXG5cclxuLyoqXHJcbiAqIEBuYW1lc3BhY2UgZ2VvbWV0cnlcclxuICovXHJcblxyXG4vKipcclxuICogRm9ybXVsYXMgcmVsYXRlZCB0byBjb25lcy5cclxuICpcclxuICogQGNsYXNzIENvbmVcclxuICogQG1lbWJlcm9mIGdlb21ldHJ5XHJcbiAqL1xyXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBDb25lIHtcclxuICAgIC8qKlxyXG4gICAgICpcclxuICAgICAqIEBtZW1iZXJvZiEgZ2VvbWV0cnkuQ29uZSNcclxuICAgICAqIEBwYXJhbSB7bnVtYmVyfSByICAgIC1cclxuICAgICAqIEBwYXJhbSB7bnVtYmVyfSBoICAgIC1cclxuICAgICAqIEByZXR1cm5zIHtudW1iZXJ9XHJcbiAgICAgKiBAc3RhdGljXHJcbiAgICAgKi9cclxuICAgIHN0YXRpYyBzbGFudEhlaWdodChyLCBoKSB7XHJcbiAgICAgICAgcmV0dXJuIFRyaWFuZ2xlLkh5cG90ZW51c2UociwgaCk7XHJcbiAgICB9XHJcblxyXG4gICAgLyoqXHJcbiAgICAgKlxyXG4gICAgICogQG1lbWJlcm9mISBnZW9tZXRyeS5Db25lI1xyXG4gICAgICogQHBhcmFtIHtudW1iZXJ9IHIgICAgLVxyXG4gICAgICogQHBhcmFtIHtudW1iZXJ9IGggICAgLVxyXG4gICAgICogQHJldHVybnMge251bWJlcn1cclxuICAgICAqIEBzdGF0aWNcclxuICAgICAqL1xyXG4gICAgc3RhdGljIGxhdGVyYWxBcmVhKHIsIGgpIHtcclxuICAgICAgICByZXR1cm4gTWF0aC5QSSAqIHIgKiB0aGlzLlNsYW50SGVpZ2h0KHIsIGgpO1xyXG4gICAgfVxyXG5cclxuICAgIC8qKlxyXG4gICAgICpcclxuICAgICAqIEBtZW1iZXJvZiEgZ2VvbWV0cnkuQ29uZSNcclxuICAgICAqIEBwYXJhbSB7bnVtYmVyfSByICAgIC1cclxuICAgICAqIEBwYXJhbSB7bnVtYmVyfSBoICAgIC1cclxuICAgICAqIEByZXR1cm5zIHtudW1iZXJ9XHJcbiAgICAgKiBAc3RhdGljXHJcbiAgICAgKi9cclxuICAgIHN0YXRpYyB0b3RhbEFyZWEociwgaCkge1xyXG4gICAgICAgIHJldHVybiB0aGlzLkxhdGVyYWxBcmVhKHIsIGgpICsgQ2lyY2xlLkFyZWEocik7XHJcbiAgICB9XHJcblxyXG4gICAgLyoqXHJcbiAgICAgKlxyXG4gICAgICogQG1lbWJlcm9mISBnZW9tZXRyeS5Db25lI1xyXG4gICAgICogQHBhcmFtIHtudW1iZXJ9IHIgICAgLVxyXG4gICAgICogQHBhcmFtIHtudW1iZXJ9IGggICAgLVxyXG4gICAgICogQHJldHVybnMge251bWJlcn1cclxuICAgICAqIEBzdGF0aWNcclxuICAgICAqL1xyXG4gICAgc3RhdGljIHZvbHVtZShyLCBoKSB7XHJcbiAgICAgICAgcmV0dXJuICgxIC8gMykgKiBNYXRoLlBJICogciAqKiAyICogaDtcclxuICAgIH1cclxufVxyXG4iLCJpbXBvcnQgQ2lyY2xlIGZyb20gJy4vY2lyY2xlLmpzJztcclxuXHJcbi8qKlxyXG4gKiBAbmFtZXNwYWNlIGdlb21ldHJ5XHJcbiAqL1xyXG5cclxuLyoqXHJcbiAqIEZvcm11bGFzIHJlbGF0ZWQgdG8gY3lsaW5kZXJzLlxyXG4gKlxyXG4gKiBAY2xhc3MgQ3lsaW5kZXJcclxuICogQG1lbWJlcm9mIGdlb21ldHJ5XHJcbiAqL1xyXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBDeWxpbmRlciB7XHJcbiAgICAvKipcclxuICAgICAqXHJcbiAgICAgKiBAbWVtYmVyb2YhIGdlb21ldHJ5LkN5bGluZGVyI1xyXG4gICAgICogQHBhcmFtIHtudW1iZXJ9IHIgICAgLVxyXG4gICAgICogQHBhcmFtIHtudW1iZXJ9IGggICAgLVxyXG4gICAgICogQHJldHVybnMge251bWJlcn1cclxuICAgICAqIEBzdGF0aWNcclxuICAgICAqL1xyXG4gICAgc3RhdGljIGxhdGVyYWxBcmVhKHIsIGgpIHtcclxuICAgICAgICByZXR1cm4gMiAqIE1hdGguUEkgKiByICogaDtcclxuICAgIH1cclxuXHJcbiAgICAvKipcclxuICAgICAqXHJcbiAgICAgKiBAbWVtYmVyb2YhIGdlb21ldHJ5LkN5bGluZGVyI1xyXG4gICAgICogQHBhcmFtIHtudW1iZXJ9IHIgICAgLVxyXG4gICAgICogQHBhcmFtIHtudW1iZXJ9IGggICAgLVxyXG4gICAgICogQHJldHVybnMge251bWJlcn1cclxuICAgICAqIEBzdGF0aWNcclxuICAgICAqL1xyXG4gICAgc3RhdGljIHRvdGFsQXJlYShyLCBoKSB7XHJcbiAgICAgICAgcmV0dXJuIEN5bGluZGVyLkFyZWEociwgaCkgKyAyICogQ2lyY2xlLkFyZWEocik7XHJcbiAgICB9XHJcblxyXG4gICAgLyoqXHJcbiAgICAgKlxyXG4gICAgICogQG1lbWJlcm9mISBnZW9tZXRyeS5DeWxpbmRlciNcclxuICAgICAqIEBwYXJhbSB7bnVtYmVyfSByICAgIC1cclxuICAgICAqIEBwYXJhbSB7bnVtYmVyfSBoICAgIC1cclxuICAgICAqIEByZXR1cm5zIHtudW1iZXJ9XHJcbiAgICAgKiBAc3RhdGljXHJcbiAgICAgKi9cclxuICAgIHN0YXRpYyB2b2x1bWUociwgaCkge1xyXG4gICAgICAgIHJldHVybiBNYXRoLlBJICogciAqKiAyICogaDtcclxuICAgIH1cclxufVxyXG4iLCIvKipcclxuICogQG5hbWVzcGFjZSBnZW9tZXRyeVxyXG4gKi9cclxuXHJcbi8qKlxyXG4gKiBGb3JtdWxhcyByZWxhdGVkIHRvIHNwaGVyZXMuXHJcbiAqXHJcbiAqIEBjbGFzcyBTcGhlcmVcclxuICogQG1lbWJlcm9mIGdlb21ldHJ5XHJcbiAqL1xyXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBTcGhlcmUge1xyXG4gICAgLyoqXHJcbiAgICAgKlxyXG4gICAgICogQG1lbWJlcm9mISBnZW9tZXRyeS5TcGhlcmUjXHJcbiAgICAgKiBAcGFyYW0ge251bWJlcn0gciAgICAtXHJcbiAgICAgKiBAcmV0dXJucyB7bnVtYmVyfVxyXG4gICAgICogQHN0YXRpY1xyXG4gICAgICovXHJcbiAgICBzdGF0aWMgc3VyZmFjZUFyZWEocikge1xyXG4gICAgICAgIHJldHVybiA0ICogTWF0aC5QSSAqIHIgKiogMjtcclxuICAgIH1cclxuXHJcbiAgICAvKipcclxuICAgICAqXHJcbiAgICAgKiBAbWVtYmVyb2YhIGdlb21ldHJ5LlNwaGVyZSNcclxuICAgICAqIEBwYXJhbSB7bnVtYmVyfSByICAgIC1cclxuICAgICAqIEByZXR1cm5zIHtudW1iZXJ9XHJcbiAgICAgKiBAc3RhdGljXHJcbiAgICAgKi9cclxuICAgIHN0YXRpYyB2b2x1bWUocikge1xyXG4gICAgICAgIHJldHVybiAoNCAvIDMpICogTWF0aC5QSSAqIHIgKiogMztcclxuICAgIH1cclxufVxyXG4iLCIvKipcclxuICogRm9ybWF0cyBhbmQgcm91bmRzIGEgbnVtYmVyIHRvIHRoZSByZXF1aXJlZCBwcmVjaXNpb24uXHJcbiAqXHJcbiAqIEBleGFtcGxlXHJcbiAqIGZvcm1hdCgxLjQzNCk7ICAgICAgIC8vIDEuNDNcclxuICogZm9ybWF0KDEuNDM2KTsgICAgICAgLy8gMS40NFxyXG4gKiBmb3JtYXQoXCIxLjQzMlwiKTsgICAgIC8vIDEuNDNcclxuICogZm9ybWF0KFwiMS40MzJcIiwgMSk7ICAvLyAxLjRcclxuICogZm9ybWF0KFwiMS40MzJcIiwgMCk7ICAvLyAxXHJcbiAqIGZvcm1hdChcIjEuNlwiLCAwKTsgICAgLy8gMlxyXG4gKiBmb3JtYXQoMSwgMTAwKTsgICAgICAvLyAxXHJcbiAqXHJcbiAqIEBwYXJhbSAgIHtudW1iZXJ9IHZhbHVlICAgICAgLSAgIFRoZSB2YWx1ZSB0byBiZSBmb3JtYXR0ZWQuXHJcbiAqIEBwYXJhbSAgIHtudW1iZXJ9IHByZWNpc2lvbiAgLSAgIDAgdG8gMTAwIG51bWJlciBvZiBmbG9hdGluZyBwb2ludCBkaWdpdHMuIERlZmF1bHQgMi5cclxuICogQHJldHVybnMge251bWJlcn0gICAgICAgICAgICAgICAgVGhlIGZvcm1hdHRlZCBudW1iZXIuXHJcbiAqL1xyXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBmb3JtYXQodmFsdWUsIHByZWNpc2lvbiA9IDIpIHtcclxuICAgIHJldHVybiBwYXJzZUZsb2F0KHBhcnNlRmxvYXQodmFsdWUpLnRvRml4ZWQocHJlY2lzaW9uKSk7XHJcbn1cclxuIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDZSxNQUFNLE1BQU0sQ0FBQztBQUM1QjtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxJQUFJLE9BQU8sSUFBSSxDQUFDLENBQUMsRUFBRTtBQUNuQixRQUFRLE9BQU8sSUFBSSxDQUFDLEVBQUUsR0FBRyxDQUFDLElBQUksQ0FBQyxDQUFDO0FBQ2hDLEtBQUs7QUFDTDtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLElBQUksT0FBTyxhQUFhLENBQUMsQ0FBQyxFQUFFO0FBQzVCLFFBQVEsT0FBTyxDQUFDLEdBQUcsSUFBSSxDQUFDLEVBQUUsR0FBRyxDQUFDLENBQUM7QUFDL0IsS0FBSztBQUNMO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsSUFBSSxPQUFPLFFBQVEsQ0FBQyxDQUFDLEVBQUU7QUFDdkIsUUFBUSxPQUFPLENBQUMsR0FBRyxDQUFDLENBQUM7QUFDckIsS0FBSztBQUNMO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsSUFBSSxPQUFPLGNBQWMsQ0FBQyxDQUFDLEVBQUU7QUFDN0IsUUFBUSxPQUFPLElBQUksQ0FBQyxJQUFJLENBQUMsQ0FBQyxHQUFHLElBQUksQ0FBQyxFQUFFLENBQUMsQ0FBQztBQUN0QyxLQUFLO0FBQ0w7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxJQUFJLE9BQU8sdUJBQXVCLENBQUMsQ0FBQyxFQUFFO0FBQ3RDLFFBQVEsT0FBTyxDQUFDLElBQUksQ0FBQyxHQUFHLElBQUksQ0FBQyxFQUFFLENBQUMsQ0FBQztBQUNqQyxLQUFLO0FBQ0w7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxJQUFJLE9BQU8sa0JBQWtCLENBQUMsQ0FBQyxFQUFFO0FBQ2pDLFFBQVEsT0FBTyxDQUFDLEdBQUcsQ0FBQyxDQUFDO0FBQ3JCLEtBQUs7QUFDTDtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsSUFBSSxrQkFBa0IsQ0FBQyxLQUFLLEVBQUUsSUFBSSxFQUFFO0FBQ3BDLFFBQVEsSUFBSSxLQUFLLEdBQUcsQ0FBQyxFQUFFO0FBQ3ZCLFlBQVksTUFBTSxJQUFJLEtBQUssQ0FBQyxDQUFDLEVBQUUsSUFBSSxDQUFDLHdCQUF3QixDQUFDLENBQUMsQ0FBQztBQUMvRCxTQUFTO0FBQ1QsS0FBSztBQUNMOztBQ2hJQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNlLE1BQU0sUUFBUSxDQUFDO0FBQzlCO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLElBQUksT0FBTyxJQUFJLENBQUMsQ0FBQyxFQUFFLENBQUMsRUFBRTtBQUN0QixRQUFRLE9BQU8sQ0FBQyxDQUFDLEdBQUcsQ0FBQyxJQUFJLENBQUMsR0FBRyxDQUFDLENBQUM7QUFDL0IsS0FBSztBQUNMO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsSUFBSSxPQUFPLFVBQVUsQ0FBQyxDQUFDLEVBQUUsQ0FBQyxFQUFFO0FBQzVCLFFBQVEsT0FBTyxJQUFJLENBQUMsSUFBSSxDQUFDLENBQUMsSUFBSSxDQUFDLEdBQUcsQ0FBQyxJQUFJLENBQUMsQ0FBQyxDQUFDO0FBQzFDLEtBQUs7QUFDTDtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxJQUFJLE9BQU8sT0FBTyxDQUFDLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQyxFQUFFO0FBQzVCLFFBQVEsT0FBTyxDQUFDLElBQUksQ0FBQyxLQUFLLENBQUMsSUFBSSxDQUFDLEdBQUcsQ0FBQyxJQUFJLENBQUMsQ0FBQztBQUMxQyxLQUFLO0FBQ0w7O0FDakRBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ2UsTUFBTSxTQUFTLENBQUM7QUFDL0I7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLElBQUksT0FBTyxJQUFJLENBQUMsQ0FBQyxFQUFFLENBQUMsRUFBRTtBQUN0QixRQUFRLE9BQU8sQ0FBQyxHQUFHLENBQUMsQ0FBQztBQUNyQixLQUFLO0FBQ0w7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsSUFBSSxPQUFPLGFBQWEsQ0FBQyxDQUFDLEVBQUUsQ0FBQyxFQUFFO0FBQy9CLFFBQVEsT0FBTyxDQUFDLEdBQUcsQ0FBQyxHQUFHLENBQUMsR0FBRyxDQUFDLENBQUM7QUFDN0IsS0FBSztBQUNMO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLElBQUksT0FBTyxRQUFRLENBQUMsQ0FBQyxFQUFFLENBQUMsRUFBRTtBQUMxQixRQUFRLE9BQU8sUUFBUSxDQUFDLFVBQVUsQ0FBQyxDQUFDLEVBQUUsQ0FBQyxDQUFDLENBQUM7QUFDekMsS0FBSztBQUNMO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLElBQUksT0FBTyxRQUFRLENBQUMsQ0FBQyxFQUFFLENBQUMsRUFBRTtBQUMxQixRQUFRLE9BQU8sQ0FBQyxLQUFLLENBQUMsQ0FBQztBQUN2QixLQUFLO0FBQ0w7O0FDekRBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ2UsTUFBTSxJQUFJLENBQUM7QUFDMUI7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLElBQUksT0FBTyxXQUFXLENBQUMsQ0FBQyxFQUFFLENBQUMsRUFBRTtBQUM3QixRQUFRLE9BQU8sUUFBUSxDQUFDLFVBQVUsQ0FBQyxDQUFDLEVBQUUsQ0FBQyxDQUFDLENBQUM7QUFDekMsS0FBSztBQUNMO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLElBQUksT0FBTyxXQUFXLENBQUMsQ0FBQyxFQUFFLENBQUMsRUFBRTtBQUM3QixRQUFRLE9BQU8sSUFBSSxDQUFDLEVBQUUsR0FBRyxDQUFDLEdBQUcsSUFBSSxDQUFDLFdBQVcsQ0FBQyxDQUFDLEVBQUUsQ0FBQyxDQUFDLENBQUM7QUFDcEQsS0FBSztBQUNMO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLElBQUksT0FBTyxTQUFTLENBQUMsQ0FBQyxFQUFFLENBQUMsRUFBRTtBQUMzQixRQUFRLE9BQU8sSUFBSSxDQUFDLFdBQVcsQ0FBQyxDQUFDLEVBQUUsQ0FBQyxDQUFDLEdBQUcsTUFBTSxDQUFDLElBQUksQ0FBQyxDQUFDLENBQUMsQ0FBQztBQUN2RCxLQUFLO0FBQ0w7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsSUFBSSxPQUFPLE1BQU0sQ0FBQyxDQUFDLEVBQUUsQ0FBQyxFQUFFO0FBQ3hCLFFBQVEsT0FBTyxDQUFDLENBQUMsR0FBRyxDQUFDLElBQUksSUFBSSxDQUFDLEVBQUUsR0FBRyxDQUFDLElBQUksQ0FBQyxHQUFHLENBQUMsQ0FBQztBQUM5QyxLQUFLO0FBQ0w7O0FDM0RBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ2UsTUFBTSxRQUFRLENBQUM7QUFDOUI7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLElBQUksT0FBTyxXQUFXLENBQUMsQ0FBQyxFQUFFLENBQUMsRUFBRTtBQUM3QixRQUFRLE9BQU8sQ0FBQyxHQUFHLElBQUksQ0FBQyxFQUFFLEdBQUcsQ0FBQyxHQUFHLENBQUMsQ0FBQztBQUNuQyxLQUFLO0FBQ0w7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsSUFBSSxPQUFPLFNBQVMsQ0FBQyxDQUFDLEVBQUUsQ0FBQyxFQUFFO0FBQzNCLFFBQVEsT0FBTyxRQUFRLENBQUMsSUFBSSxDQUFDLENBQUMsRUFBRSxDQUFDLENBQUMsR0FBRyxDQUFDLEdBQUcsTUFBTSxDQUFDLElBQUksQ0FBQyxDQUFDLENBQUMsQ0FBQztBQUN4RCxLQUFLO0FBQ0w7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsSUFBSSxPQUFPLE1BQU0sQ0FBQyxDQUFDLEVBQUUsQ0FBQyxFQUFFO0FBQ3hCLFFBQVEsT0FBTyxJQUFJLENBQUMsRUFBRSxHQUFHLENBQUMsSUFBSSxDQUFDLEdBQUcsQ0FBQyxDQUFDO0FBQ3BDLEtBQUs7QUFDTDs7QUNoREE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDZSxNQUFNLE1BQU0sQ0FBQztBQUM1QjtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLElBQUksT0FBTyxXQUFXLENBQUMsQ0FBQyxFQUFFO0FBQzFCLFFBQVEsT0FBTyxDQUFDLEdBQUcsSUFBSSxDQUFDLEVBQUUsR0FBRyxDQUFDLElBQUksQ0FBQyxDQUFDO0FBQ3BDLEtBQUs7QUFDTDtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsSUFBSSxPQUFPLE1BQU0sQ0FBQyxDQUFDLEVBQUU7QUFDckIsUUFBUSxPQUFPLENBQUMsQ0FBQyxHQUFHLENBQUMsSUFBSSxJQUFJLENBQUMsRUFBRSxHQUFHLENBQUMsSUFBSSxDQUFDLENBQUM7QUFDMUMsS0FBSztBQUNMOzs7Ozs7Ozs7Ozs7QUNoQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDZSxTQUFTLE1BQU0sQ0FBQyxLQUFLLEVBQUUsU0FBUyxHQUFHLENBQUMsRUFBRTtBQUNyRCxJQUFJLE9BQU8sVUFBVSxDQUFDLFVBQVUsQ0FBQyxLQUFLLENBQUMsQ0FBQyxPQUFPLENBQUMsU0FBUyxDQUFDLENBQUMsQ0FBQztBQUM1RDs7OzsifQ==
+var helpers = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    isGreaterThanZero: isGreaterThanZero,
+    format: format
+});
+
+export { convert, index as geometry, helpers, rng };

@@ -495,8 +495,39 @@ describe('namespace: geometry', function () {
     });
 
     describe('geometry.Cuboid', function () {
-        describe('geometry.Cuboid#', function () {
-            it('should test functions');
+        describe('geometry.Cuboid#volume', function () {
+            it('should be 6 when w = 1, h = 2, l = 3', function () {
+                let volume = geometry.Cuboid.volume(1, 2, 3);
+                expect(volume).to.equal(6);
+            });
+        });
+
+        describe('geometry.Cuboid#area', function () {
+            it('should be 22 when w = 1, h = 2, l = 3', function () {
+                let area = geometry.Cuboid.area(1, 2, 3);
+                expect(area).to.equal(22);
+            });
+        });
+
+        describe('geometry.Cuboid#diagonal', function () {
+            it('should be 3 when w = 2, h = 2, l = 1', function () {
+                let diagonal = geometry.Cuboid.diagonal(2, 2, 1);
+                expect(diagonal).to.equal(3);
+            });
+        });
+
+        describe('geometry.Cuboid#sideFromVolume', function () {
+            it('should be 1 when V = 1, a = 1, b = 1', function () {
+                let side = geometry.Cuboid.sideFromVolume(1, 1, 1);
+                expect(side).to.equal(1);
+            });
+        });
+
+        describe('geometry.Cuboid#sideFromDiagonal', function () {
+            it('should be sqrt(2) when d = 2, a = 1, b = 1', function () {
+                let side = geometry.Cuboid.sideFromDiagonal(2, 1, 1);
+                expect(side).to.be.approximately(Math.sqrt(2), Number.EPSILON);
+            });
         });
     });
 });

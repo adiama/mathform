@@ -1,8 +1,4 @@
 /**
- * @namespace geometry
- */
-
-/**
  * Formulas related to spheres.
  *
  * @class Sphere

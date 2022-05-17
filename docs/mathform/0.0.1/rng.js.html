@@ -31,7 +31,7 @@
 
 
     <title>
-      geometry/rectangle.js
+      rng.js
     </title>
 
     <!--[if lt IE 9]>
@@ -98,7 +98,7 @@
     <div id="main" class="main-content">
       
       <h1 id='page-title' class="page-title">
-        geometry/rectangle.js
+        rng.js
       </h1>
       
 
@@ -109,78 +109,156 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import Triangle from './triangle.js';
+            <pre class="prettyprint source linenums"><code>/**
+ * @namespace rng
+ */
 
 /**
- * Formulas related to rectangles.
+ * Random Integer generator based on Math.random()
+ * inclusive min, inclusive max
  *
- * @class Rectangle
- * @memberof geometry
+ * @example
+ * console.log(rng.generateRandomInteger(0, 5));    // 5
+ * console.log(rng.generateRandomInteger(0, 5));    // 4
+ * console.log(rng.generateRandomInteger(0, 5));    // 4
+ * console.log(rng.generateRandomInteger(0, 5));    // 0
+ * console.log(rng.generateRandomInteger(0, 5));    // 5
+ *
+ * console.log(rng.generateRandomInteger(0, 100));  // 45
+ * console.log(rng.generateRandomInteger(0, 100));  // 52
+ * console.log(rng.generateRandomInteger(0, 100));  // 45
+ * console.log(rng.generateRandomInteger(90, 100)); // 94
+ * console.log(rng.generateRandomInteger(90, 100)); // 99
+ *
+ * @memberof rng
+ * @param {number}  min
+ * @param {number}  max
+ * @returns {number}        Integer of range min, max
  */
-export default class Rectangle {
-    /**
-     * Calculates the area of a rectangle from width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.area(2, 2); // 4
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        wh
-     * @static
-     */
-    static area(w, h) {
-        return w * h;
+export function generateRandomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/**
+ * Random Float generator based on Math.random()
+ * inclusive min, exclusive max
+ *
+ * @example
+ * console.log(rng.generateRandomFloat(0, 0.001));      // 0.00026509881625332786
+ * console.log(rng.generateRandomFloat(0, 0.001));      // 0.00007506891359581824
+ * console.log(rng.generateRandomFloat(0, 0.001));      // 0.00044325961245963644
+ * console.log(rng.generateRandomFloat(0, 0.001));      // 0.0009738804824279097
+ * console.log(rng.generateRandomFloat(0, 0.001));      // 0.00037007902123962523
+ *
+ * console.log(rng.generateRandomFloat(0, 1));          // 0.5439056343074258
+ * console.log(rng.generateRandomFloat(0, 1));          // 0.7389564454471567
+ * console.log(rng.generateRandomFloat(0, 1));          // 0.8800660182555697
+ * console.log(rng.generateRandomFloat(0, 1));          // 0.028073711000210277
+ * console.log(rng.generateRandomFloat(0, 1));          // 0.45954615798738296
+ *
+ * console.log(rng.generateRandomFloat(1, 2));          // 1.8467985822932083
+ * console.log(rng.generateRandomFloat(2, 3));          // 2.603690406049185
+ * console.log(rng.generateRandomFloat(3, 30));         // 14.428615314773008
+ * console.log(rng.generateRandomFloat(50, 100));       // 78.90222904220667
+ * console.log(rng.generateRandomFloat(1000, 10000));   // 8798.862959284734
+ *
+ * @memberof rng
+ * @param {number}  min
+ * @param {number}  max
+ * @returns {number}        Float of range min, max
+ */
+export function generateRandomFloat(min, max) {
+    return parseFloat(Math.random() * (max - min) + min);
+}
+
+/**
+ * Linear Congruential Generator
+ *
+ * Learn more
+ *  - [wikipedia]{@link https://en.wikipedia.org/wiki/Linear_congruential_generator}
+ *  - [rosettacode]{@link https://rosettacode.org/wiki/Linear_congruential_generator}
+ *  - [ams]{@link https://www.ams.org/journals/mcom/1999-68-225/S0025-5718-99-00996-5/S0025-5718-99-00996-5.pdf}
+ *
+ * @example
+ * import { rng } from 'mathform';
+ *
+ * // ZX81 parameters
+ * // (see wikipedia or ams links provided above for more parameters)
+ * let modulus = 2 ** 16 + 1;
+ * let multiplier = 75;
+ * let increment = 74;
+ * let seed = Math.floor(Math.random() * 2 ** 16);
+ *
+ * // Create the LCG objet
+ * let lcg = new rng.LCG(modulus, multiplier, increment, seed);
+ *
+ * // Usage
+ * lcg.step() // returns a random number where 0 &lt;= number &lt;= 2 ** 16
+ *
+ * @class LCG
+ * @memberof rng
+ */
+export class LCG {
+    get modulus() {
+        return this._m;
+    }
+
+    get multiplier() {
+        return this._a;
+    }
+
+    get increment() {
+        return this._c;
+    }
+
+    get seed() {
+        return this._X;
     }
 
     /**
-     * Calculates the area of a rectangle from width and height
+     * The generator is defined by the recurrence relation
+     *  - X&lt;sub>0&lt;/sub> = (aX&lt;sub>n&lt;/sub> + c) mod m
      *
-     * @example
-     * mathform.geometry.Rectangle.circumference(2, 2); // 8
+     * Were
+     * - 0 &lt; m
+     * - 0 &lt; a &lt; m
+     * - 0 &lt;= c &lt; m
+     * - 0 &lt;= X&lt;sub>0&lt;/sub> &lt; m
      *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        2w+2h
-     * @static
+     * @memberof! rng.LCG#
+     * @param {integer} Modulus     - 0 &lt; m
+     * @param {integer} Multiplier  - 0 &lt; a &lt; m
+     * @param {integer} Increment   - 0 &lt;= c &lt; m
+     * @param {number}  Seed        - 0 &lt;= X0 &lt; m
+     * @constructor
      */
-    static circumference(w, h) {
-        return w * 2 + h * 2;
+    constructor(modulus, multiplier, increment, seed) {
+        this._m = modulus;
+        this._a = multiplier;
+        this._c = increment;
+        this._X = seed;
     }
 
     /**
-     * Calculates the area of a rectangle from width and height
+     * Iterates the algorithm once and returns the new seed
      *
-     * @example
-     * mathform.geometry.Rectangle.diagonal(1, 1); // sqrt(2)
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        &amp;radic;w&amp;#178;+h&amp;#178;
-     * @static
+     * @memberof! rng.LCG#
+     * @returns {integer}
+     * @public
      */
-    static diagonal(w, h) {
-        return Triangle.hypotenuse(w, h);
+    step() {
+        this._iterate();
+        return this.seed;
     }
 
     /**
-     * Evaluates if a rectangle is a square based on its width and height
+     * Iterates the algorithm once
      *
-     * @example
-     * mathform.geometry.Rectangle.isSquare(2, 2); // true
-     * mathform.geometry.Rectangle.isSquare(1, 2); // false
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {boolean}       w&amp;equiv;h
-     * @static
+     * @memberof! rng.LCG#
+     * @private
      */
-    static isSquare(w, h) {
-        return w === h;
+    _iterate() {
+        this._X = (this.multiplier * this.seed + this.increment) % this.modulus;
     }
 }
 </code></pre>

@@ -31,7 +31,7 @@
 
 
     <title>
-      geometry/rectangle.js
+      helpers
     </title>
 
     <!--[if lt IE 9]>
@@ -98,7 +98,7 @@
     <div id="main" class="main-content">
       
       <h1 id='page-title' class="page-title">
-        geometry/rectangle.js
+        helpers
       </h1>
       
 
@@ -106,86 +106,359 @@
 
 
 
+
+<section>
+
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import Triangle from './triangle.js';
+        
+        <h2>
+        
+        helpers
+        
+        </h2>
+        
+        
+    
+</header>
 
-/**
- * Formulas related to rectangles.
- *
- * @class Rectangle
- * @memberof geometry
- */
-export default class Rectangle {
-    /**
-     * Calculates the area of a rectangle from width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.area(2, 2); // 4
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        wh
-     * @static
-     */
-    static area(w, h) {
-        return w * h;
-    }
 
-    /**
-     * Calculates the area of a rectangle from width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.circumference(2, 2); // 8
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        2w+2h
-     * @static
-     */
-    static circumference(w, h) {
-        return w * 2 + h * 2;
-    }
+<article>
+    <div class="container-overview">
+    
+        
 
-    /**
-     * Calculates the area of a rectangle from width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.diagonal(1, 1); // sqrt(2)
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        &amp;radic;w&amp;#178;+h&amp;#178;
-     * @static
-     */
-    static diagonal(w, h) {
-        return Triangle.hypotenuse(w, h);
-    }
+        
 
-    /**
-     * Evaluates if a rectangle is a square based on its width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.isSquare(2, 2); // true
-     * mathform.geometry.Rectangle.isSquare(1, 2); // false
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {boolean}       w&amp;equiv;h
-     * @static
-     */
-    static isSquare(w, h) {
-        return w === h;
-    }
-}
-</code></pre>
-        </article>
-    </section>
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="helpers.js.html">helpers.js</a>, <a href="helpers.js.html#line1">line 1</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.isGreaterThanZero">
+        <a href="#.exports.isGreaterThanZero">#</a>
+        <span class="type-signature">(static) </span>exports.isGreaterThanZero<span class="signature">(input, name, strict)</span><span class="type-signature"> &rarr; {boolean}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        Checks if the given input is greater than 0. Throws an error or returns boolean if strict parameter is passed as false.
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>input</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Input value</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Variable name</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>strict</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Set to false if you need an exception instead. Default true</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="helpers.js.html">helpers.js</a>, <a href="helpers.js.html#line29">line 29</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Throws:</strong>
+    
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        When input < 0
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+    </div>
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <div class="rel">
+    <pre class="prettyprint"><code>// throws 'Radius must be greater than 0.'this._isGreaterThanZero(-1, 'Radius');// returns falsethis._isGreaterThanZero(-1, 'Radius', false);// passesthis._isGreaterThanZero(1, 'Area');// returns truethis._isGreaterThanZero(1, 'Area', false);</code></pre>
+    
+    
+    </div>
+
+    </div>
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

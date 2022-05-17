@@ -31,7 +31,7 @@
 
 
     <title>
-      geometry/rectangle.js
+      exports.LCG
     </title>
 
     <!--[if lt IE 9]>
@@ -98,7 +98,7 @@
     <div id="main" class="main-content">
       
       <h1 id='page-title' class="page-title">
-        geometry/rectangle.js
+        exports.LCG
       </h1>
       
 
@@ -106,86 +106,262 @@
 
 
 
+
+<section>
+
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import Triangle from './triangle.js';
+        
+        <h2>
+        
+            <span class="ancestors"><a href="rng.html">rng</a><a href="rng.LCG.html">.LCG</a>#</span>
+        
+        exports.LCG
+        
+        </h2>
+        
+        
+    
+</header>
 
-/**
- * Formulas related to rectangles.
- *
- * @class Rectangle
- * @memberof geometry
- */
-export default class Rectangle {
-    /**
-     * Calculates the area of a rectangle from width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.area(2, 2); // 4
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        wh
-     * @static
-     */
-    static area(w, h) {
-        return w * h;
-    }
 
-    /**
-     * Calculates the area of a rectangle from width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.circumference(2, 2); // 8
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        2w+2h
-     * @static
-     */
-    static circumference(w, h) {
-        return w * 2 + h * 2;
-    }
+<article>
+    <div class="container-overview">
+    
+        
 
-    /**
-     * Calculates the area of a rectangle from width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.diagonal(1, 1); // sqrt(2)
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        &amp;radic;w&amp;#178;+h&amp;#178;
-     * @static
-     */
-    static diagonal(w, h) {
-        return Triangle.hypotenuse(w, h);
-    }
+    
 
-    /**
-     * Evaluates if a rectangle is a square based on its width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.isSquare(2, 2); // true
-     * mathform.geometry.Rectangle.isSquare(1, 2); // false
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {boolean}       w&amp;equiv;h
-     * @static
-     */
-    static isSquare(w, h) {
-        return w === h;
-    }
-}
-</code></pre>
-        </article>
-    </section>
+    <h4 class="name" id="exports.LCG">
+        <a href="#exports.LCG">#</a>
+        <span class="type-signature"></span>new exports.LCG<span class="signature">(Modulus, Multiplier, Increment, Seed)</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        The generator is defined by the recurrence relation - X<sub>0</sub> = (aX<sub>n</sub> + c) mod mWere- 0 < m- 0 < a < m- 0 <= c < m- 0 <= X<sub>0</sub> < m
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>Modulus</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">0 < m</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Multiplier</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">0 < a < m</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Increment</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">0 <= c < m</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Seed</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">0 <= X0 < m</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="rng.js.html">rng.js</a>, <a href="rng.js.html#line124">line 124</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

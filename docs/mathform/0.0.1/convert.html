@@ -31,7 +31,7 @@
 
 
     <title>
-      geometry/rectangle.js
+      convert
     </title>
 
     <!--[if lt IE 9]>
@@ -98,7 +98,7 @@
     <div id="main" class="main-content">
       
       <h1 id='page-title' class="page-title">
-        geometry/rectangle.js
+        convert
       </h1>
       
 
@@ -106,86 +106,687 @@
 
 
 
+
+<section>
+
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import Triangle from './triangle.js';
+        
+        <h2>
+        
+        convert
+        
+        </h2>
+        
+        
+    
+</header>
 
-/**
- * Formulas related to rectangles.
- *
- * @class Rectangle
- * @memberof geometry
- */
-export default class Rectangle {
-    /**
-     * Calculates the area of a rectangle from width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.area(2, 2); // 4
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        wh
-     * @static
-     */
-    static area(w, h) {
-        return w * h;
-    }
 
-    /**
-     * Calculates the area of a rectangle from width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.circumference(2, 2); // 8
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        2w+2h
-     * @static
-     */
-    static circumference(w, h) {
-        return w * 2 + h * 2;
-    }
+<article>
+    <div class="container-overview">
+    
+        
 
-    /**
-     * Calculates the area of a rectangle from width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.diagonal(1, 1); // sqrt(2)
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        &amp;radic;w&amp;#178;+h&amp;#178;
-     * @static
-     */
-    static diagonal(w, h) {
-        return Triangle.hypotenuse(w, h);
-    }
+        
 
-    /**
-     * Evaluates if a rectangle is a square based on its width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.isSquare(2, 2); // true
-     * mathform.geometry.Rectangle.isSquare(1, 2); // false
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {boolean}       w&amp;equiv;h
-     * @static
-     */
-    static isSquare(w, h) {
-        return w === h;
-    }
-}
-</code></pre>
-        </article>
-    </section>
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="convert.js.html">convert.js</a>, <a href="convert.js.html#line1">line 1</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.degreesToRadians">
+        <a href="#.exports.degreesToRadians">#</a>
+        <span class="type-signature">(static) </span>exports.degreesToRadians<span class="signature">(degrees)</span><span class="type-signature"> &rarr; {number}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        Converts degrees to radians
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>degrees</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="convert.js.html">convert.js</a>, <a href="convert.js.html#line15">line 15</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    radians
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <div class="rel">
+    <pre class="prettyprint"><code>mathform.convert.degreesToRadians(180) // ~3.14159...</code></pre>
+    
+    
+    </div>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.normalize">
+        <a href="#.exports.normalize">#</a>
+        <span class="type-signature">(static) </span>exports.normalize<span class="signature">(value, min, max)</span><span class="type-signature"> &rarr; {number}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        Normalizes a value
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>min</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>max</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="convert.js.html">convert.js</a>, <a href="convert.js.html#line45">line 45</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    float from 0 and 1
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <div class="rel">
+    <pre class="prettyprint"><code>mathform.convert.normalize(150, 100, 200) // 0.5</code></pre>
+    
+    
+    </div>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.radiansToDegrees">
+        <a href="#.exports.radiansToDegrees">#</a>
+        <span class="type-signature">(static) </span>exports.radiansToDegrees<span class="signature">(radians)</span><span class="type-signature"> &rarr; {number}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        Converts radians to degrees
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>radians</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <a href="convert.js.html">convert.js</a>, <a href="convert.js.html#line29">line 29</a>
+            </li></ul></dd>
+        </div>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    degrees
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <div class="rel">
+    <pre class="prettyprint"><code>mathform.convert.radiansToDegrees(Math.PI) // 180</code></pre>
+    
+    
+    </div>
+
+    </div>
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

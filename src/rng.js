@@ -114,7 +114,7 @@ export class LCG {
      * - 0 <= c < m
      * - 0 <= X<sub>0</sub> < m
      *
-     * @memberof! rng#LCG
+     * @memberof! rng.LCG#
      * @param {integer} Modulus     - 0 < m
      * @param {integer} Multiplier  - 0 < a < m
      * @param {integer} Increment   - 0 <= c < m
@@ -131,7 +131,7 @@ export class LCG {
     /**
      * Iterates the algorithm once and returns the new seed
      *
-     * @memberof! rng#LCG
+     * @memberof! rng.LCG#
      * @returns {integer}
      * @public
      */
@@ -143,7 +143,7 @@ export class LCG {
     /**
      * Iterates the algorithm once
      *
-     * @memberof! rng#LCG
+     * @memberof! rng.LCG#
      * @private
      */
     _iterate() {

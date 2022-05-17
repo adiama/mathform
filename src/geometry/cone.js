@@ -2,10 +2,6 @@ import Circle from './circle.js';
 import Triangle from './triangle.js';
 
 /**
- * @namespace geometry
- */
-
-/**
  * Formulas related to cones.
  *
  * @class Cone

@@ -31,7 +31,7 @@
 
 
     <title>
-      geometry/rectangle.js
+      geometry/cuboid.js
     </title>
 
     <!--[if lt IE 9]>
@@ -98,7 +98,7 @@
     <div id="main" class="main-content">
       
       <h1 id='page-title' class="page-title">
-        geometry/rectangle.js
+        geometry/cuboid.js
       </h1>
       
 
@@ -109,78 +109,96 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import Triangle from './triangle.js';
-
-/**
- * Formulas related to rectangles.
+            <pre class="prettyprint source linenums"><code>/**
+ * Formulas related to cuboids.
  *
- * @class Rectangle
+ * @class Cuboid
  * @memberof geometry
  */
-export default class Rectangle {
+export default class Cuboid {
     /**
-     * Calculates the area of a rectangle from width and height
+     * Calculates the volume of a cuboid from its width, length and height.
      *
      * @example
-     * mathform.geometry.Rectangle.area(2, 2); // 4
+     * mathform.geometry.Cuboid.volume(1, 2, 3); // 6
      *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        wh
+     * @memberof! geometry.Cuboid#
+     * @param   {number} w -    width
+     * @param   {number} h -    height
+     * @param   {number} l -    length
+     * @returns                 whl
      * @static
      */
-    static area(w, h) {
-        return w * h;
+    static volume(w, h, l) {
+        return w * h * l;
     }
 
     /**
-     * Calculates the area of a rectangle from width and height
+     * Calculates the area of a cuboid from its width, length and height.
      *
      * @example
-     * mathform.geometry.Rectangle.circumference(2, 2); // 8
+     * mathform.geometry.Cuboid.area(1, 2, 3); // 22
      *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        2w+2h
+     * @memberof! geometry.Cuboid#
+     * @param   {number} w -    width
+     * @param   {number} h -    height
+     * @param   {number} l -    length
+     * @returns                 2(wl+hl+lw)
      * @static
      */
-    static circumference(w, h) {
-        return w * 2 + h * 2;
+    static area(w, h, l) {
+        return 2 * (w * l + h * l + h * w);
     }
 
     /**
-     * Calculates the area of a rectangle from width and height
+     * Calculates the diagonal of a cuboid from its width, length and height.
      *
      * @example
-     * mathform.geometry.Rectangle.diagonal(1, 1); // sqrt(2)
+     * mathform.geometry.Cuboid.diagonal(1, 2, 3); // ~3.74
      *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        &amp;radic;w&amp;#178;+h&amp;#178;
+     * @memberof! geometry.Cuboid#
+     * @param   {number} w -    width
+     * @param   {number} h -    height
+     * @param   {number} l -    length
+     * @returns                 &amp;radic;(w&amp;#178;+h&amp;#178;+l&amp;#178;)
      * @static
      */
-    static diagonal(w, h) {
-        return Triangle.hypotenuse(w, h);
+    static diagonal(w, h, l) {
+        return Math.sqrt(w ** 2 + h ** 2 + l ** 2);
     }
 
     /**
-     * Evaluates if a rectangle is a square based on its width and height
+     * Calculates a side of a cuboid from its other 2 sides and its Volume.
      *
      * @example
-     * mathform.geometry.Rectangle.isSquare(2, 2); // true
-     * mathform.geometry.Rectangle.isSquare(1, 2); // false
+     * mathform.geometry.Cuboid.sideFromVolume(1, 1, 1); // 1
      *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {boolean}       w&amp;equiv;h
+     * @memberof! geometry.Cuboid#
+     * @param   {number} V -    Volume
+     * @param   {number} a -    side a
+     * @param   {number} b -    side b
+     * @returns                 &lt;sup>V&lt;/sup>&amp;frasl;&lt;sub>ab&lt;/sub>
      * @static
      */
-    static isSquare(w, h) {
-        return w === h;
+    static sideFromVolume(V, a, b) {
+        return V / (a * b);
+    }
+
+    /**
+     * Calculates a side of a cuboid from its other 2 sides and its diagonal.
+     *
+     * @example
+     * mathform.geometry.Cuboid.sideFromDiagonal(2, 1, 1); // sqrt(2)
+     *
+     * @memberof! geometry.Cuboid#
+     * @param   {number} d -    diagonal
+     * @param   {number} a -    side a
+     * @param   {number} b -    side b
+     * @returns                 &amp;radic;(d&amp;#178;-a&amp;#178;-b&amp;#178;)
+     * @static
+     */
+    static sideFromDiagonal(d, a, b) {
+        return Math.sqrt(d ** 2 - a ** 2 - b ** 2);
     }
 }
 </code></pre>

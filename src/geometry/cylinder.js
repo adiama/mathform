@@ -1,10 +1,6 @@
 import Circle from './circle.js';
 
 /**
- * @namespace geometry
- */
-
-/**
  * Formulas related to cylinders.
  *
  * @class Cylinder

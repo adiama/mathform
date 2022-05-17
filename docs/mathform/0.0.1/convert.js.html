@@ -31,7 +31,7 @@
 
 
     <title>
-      geometry/rectangle.js
+      convert.js
     </title>
 
     <!--[if lt IE 9]>
@@ -98,7 +98,7 @@
     <div id="main" class="main-content">
       
       <h1 id='page-title' class="page-title">
-        geometry/rectangle.js
+        convert.js
       </h1>
       
 
@@ -109,79 +109,52 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import Triangle from './triangle.js';
+            <pre class="prettyprint source linenums"><code>/**
+ * @namespace convert
+ */
 
 /**
- * Formulas related to rectangles.
+ * Converts degrees to radians
  *
- * @class Rectangle
- * @memberof geometry
+ * @example
+ * mathform.convert.degreesToRadians(180) // ~3.14159...
+ *
+ * @memberof convert
+ * @param   {number} degrees
+ * @returns {number}            radians
  */
-export default class Rectangle {
-    /**
-     * Calculates the area of a rectangle from width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.area(2, 2); // 4
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        wh
-     * @static
-     */
-    static area(w, h) {
-        return w * h;
-    }
+export function degreesToRadians(degrees) {
+    return (degrees * Math.PI) / 180;
+}
 
-    /**
-     * Calculates the area of a rectangle from width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.circumference(2, 2); // 8
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        2w+2h
-     * @static
-     */
-    static circumference(w, h) {
-        return w * 2 + h * 2;
-    }
+/**
+ * Converts radians to degrees
+ *
+ * @example
+ * mathform.convert.radiansToDegrees(Math.PI) // 180
+ *
+ * @memberof convert
+ * @param   {number} radians
+ * @returns {number}            degrees
+ */
+export function radiansToDegrees(radians) {
+    return (radians * 180) / Math.PI;
+}
 
-    /**
-     * Calculates the area of a rectangle from width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.diagonal(1, 1); // sqrt(2)
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        &amp;radic;w&amp;#178;+h&amp;#178;
-     * @static
-     */
-    static diagonal(w, h) {
-        return Triangle.hypotenuse(w, h);
-    }
-
-    /**
-     * Evaluates if a rectangle is a square based on its width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.isSquare(2, 2); // true
-     * mathform.geometry.Rectangle.isSquare(1, 2); // false
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {boolean}       w&amp;equiv;h
-     * @static
-     */
-    static isSquare(w, h) {
-        return w === h;
-    }
+/**
+ * Normalizes a value
+ *
+ * @example
+ * mathform.convert.normalize(150, 100, 200) // 0.5
+ *
+ * @memberof convert
+ * @param   {number} value
+ * @param   {number} min
+ * @param   {number} max
+ * @returns {number}        float from 0 and 1
+ */
+export function normalize(value, min, max) {
+    return (value - min) / (max - min);
 }
 </code></pre>
         </article>

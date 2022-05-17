@@ -31,7 +31,7 @@
 
 
     <title>
-      geometry/rectangle.js
+      geometry/index.js
     </title>
 
     <!--[if lt IE 9]>
@@ -98,7 +98,7 @@
     <div id="main" class="main-content">
       
       <h1 id='page-title' class="page-title">
-        geometry/rectangle.js
+        geometry/index.js
       </h1>
       
 
@@ -109,80 +109,19 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import Triangle from './triangle.js';
+            <pre class="prettyprint source linenums"><code>import Circle from './circle.js';
+import Triangle from './triangle.js';
+import Rectangle from './rectangle.js';
+import Cone from './cone.js';
+import Cylinder from './cylinder.js';
+import Sphere from './sphere.js';
+import Cuboid from './cuboid.js';
 
 /**
- * Formulas related to rectangles.
- *
- * @class Rectangle
- * @memberof geometry
+ * @namespace geometry
  */
-export default class Rectangle {
-    /**
-     * Calculates the area of a rectangle from width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.area(2, 2); // 4
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        wh
-     * @static
-     */
-    static area(w, h) {
-        return w * h;
-    }
 
-    /**
-     * Calculates the area of a rectangle from width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.circumference(2, 2); // 8
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        2w+2h
-     * @static
-     */
-    static circumference(w, h) {
-        return w * 2 + h * 2;
-    }
-
-    /**
-     * Calculates the area of a rectangle from width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.diagonal(1, 1); // sqrt(2)
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        &amp;radic;w&amp;#178;+h&amp;#178;
-     * @static
-     */
-    static diagonal(w, h) {
-        return Triangle.hypotenuse(w, h);
-    }
-
-    /**
-     * Evaluates if a rectangle is a square based on its width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.isSquare(2, 2); // true
-     * mathform.geometry.Rectangle.isSquare(1, 2); // false
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {boolean}       w&amp;equiv;h
-     * @static
-     */
-    static isSquare(w, h) {
-        return w === h;
-    }
-}
+export { Circle, Triangle, Rectangle, Cone, Cylinder, Sphere, Cuboid };
 </code></pre>
         </article>
     </section>

@@ -1,10 +1,6 @@
 import Triangle from './triangle.js';
 
 /**
- * @namespace geometry
- */
-
-/**
  * Formulas related to rectangles.
  *
  * @class Rectangle

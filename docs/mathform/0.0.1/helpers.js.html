@@ -31,7 +31,7 @@
 
 
     <title>
-      geometry/rectangle.js
+      helpers.js
     </title>
 
     <!--[if lt IE 9]>
@@ -98,7 +98,7 @@
     <div id="main" class="main-content">
       
       <h1 id='page-title' class="page-title">
-        geometry/rectangle.js
+        helpers.js
       </h1>
       
 
@@ -109,79 +109,44 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import Triangle from './triangle.js';
+            <pre class="prettyprint source linenums"><code>/**
+ * @namespace helpers
+ */
 
 /**
- * Formulas related to rectangles.
+ * Checks if the given input is greater than 0.
+ *  Throws an error or returns boolean if strict parameter is passed as false.
  *
- * @class Rectangle
- * @memberof geometry
+ * @example
+ * // throws 'Radius must be greater than 0.'
+ * this._isGreaterThanZero(-1, 'Radius');
+ *
+ * // returns false
+ * this._isGreaterThanZero(-1, 'Radius', false);
+ *
+ * // passes
+ * this._isGreaterThanZero(1, 'Area');
+ *
+ * // returns true
+ * this._isGreaterThanZero(1, 'Area', false);
+ *
+ * @memberof! helpers
+ * @param   {number}    input   -   Input value
+ * @param   {string}    name    -   Variable name
+ * @param   {boolean}   strict  -   Set to false if you need an exception instead. Default true
+ * @throws  {Error}                 When input &lt; 0
+ * @returns {boolean}
  */
-export default class Rectangle {
-    /**
-     * Calculates the area of a rectangle from width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.area(2, 2); // 4
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        wh
-     * @static
-     */
-    static area(w, h) {
-        return w * h;
+export function isGreaterThanZero(input, name, strict = true) {
+    if (input &lt;= 0) {
+        if (strict) {
+            throw new Error(`${name ? name : 'Value'} must be greater than 0.`);
+        }
+
+        return false;
     }
 
-    /**
-     * Calculates the area of a rectangle from width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.circumference(2, 2); // 8
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        2w+2h
-     * @static
-     */
-    static circumference(w, h) {
-        return w * 2 + h * 2;
-    }
-
-    /**
-     * Calculates the area of a rectangle from width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.diagonal(1, 1); // sqrt(2)
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {number}        &amp;radic;w&amp;#178;+h&amp;#178;
-     * @static
-     */
-    static diagonal(w, h) {
-        return Triangle.hypotenuse(w, h);
-    }
-
-    /**
-     * Evaluates if a rectangle is a square based on its width and height
-     *
-     * @example
-     * mathform.geometry.Rectangle.isSquare(2, 2); // true
-     * mathform.geometry.Rectangle.isSquare(1, 2); // false
-     *
-     * @memberof! geometry.Rectangle#
-     * @param   {number} w    - width
-     * @param   {number} h    - height
-     * @returns {boolean}       w&amp;equiv;h
-     * @static
-     */
-    static isSquare(w, h) {
-        return w === h;
-    }
+    return true;
 }
 </code></pre>
         </article>

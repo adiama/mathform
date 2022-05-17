@@ -29,7 +29,7 @@ add tests shield -->
   <p align="center">
     A collection of mathematical formulas, constants and algorithms
     <br />
-    <a href="https://github.com/adiama/mathform"><strong>Explore the docs »</strong></a>
+    <a href="https://adiama.github.io/mathform/"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/adiama/mathform/issues">Report Bug</a>
@@ -100,7 +100,7 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+_For more examples, please refer to the [Documentation](https://adiama.github.io/mathform/)_
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

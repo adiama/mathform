@@ -19,7 +19,9 @@
     }
   },
   "files": [
-    "dist/*"
+    "dist/*",
+    "CHANGELOG.md",
+    ".size-snapshot.json"
   ],
   "scripts": {
     "test": "mocha test/test.js test/*.test.js",

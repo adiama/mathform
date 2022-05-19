@@ -38,6 +38,7 @@
     "prerelease:alpha": "npm version prerelease --preid alpha",
     "prerelease:beta": "npm version prerelease --preid beta",
     "publish": "npm publish --access public",
+    "publish:test": "npm pack",
     "publish:dry": "npm publish --access public --dry-run",
     "link": "npm link ./dist",
     "serve:docs": "http-server ./docs/mathform -p 8082"

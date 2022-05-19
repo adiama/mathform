@@ -4,3 +4,6 @@ docs
 src
 test
 utils
+
+!CHANGELOG.md
+!.size-snapshot.json

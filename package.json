@@ -27,7 +27,7 @@
     "lint": "eslint ./src --ext .js --fix",
     "lint:check": "eslint ./src --ext .js",
     "build": "rollup --config",
-    "build:prod": "rollup --config --environment NODE_ENV:production && node ./utils/build.js",
+    "build:prod": "npm run lint && npm run test && npm run update-license && rollup --config --environment NODE_ENV:production",
     "update-license": "node utils/update-license.js",
     "bump:major": "npm version major",
     "bump:minor": "npm version minor",

@@ -1,6 +1,15 @@
 # Changelog
 
+## v0.0.3
+
+### Added or Changed
+
+- [m] modified README.md
+- [m] fixed CHANGELOG.md format
+
 ## v0.0.2
+
+### Added or Changed
 
 - [m] modified package.json scripts and project files for publishing
 

@@ -55,6 +55,7 @@ add tests shield -->
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -67,19 +68,6 @@ Mathform is a collection of mathematical formulas and various algorithms that I 
 
 <!-- GETTING STARTED -->
 ## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-
-* npm
-
-  ```sh
-  npm install mathform -g
-  ```
 
 ### Installation
 
@@ -99,6 +87,32 @@ This is an example of how to list things you need to use the software and how to
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+
+### cdn
+```html
+<script src="https://combinatronics.com/adiama/mathform/main/dist/mathform.umd.js"></script>
+
+<script type="text/javascript">
+    console.log(mathform.geometry.Circle.area(5));
+</script>
+```
+
+### es5
+```javascript
+const mathform = require('mathform');
+console.log(mathform.geometry.Circle.area(5));
+```
+
+### es6
+```javascript
+import * as mathform from "mathform";
+console.log(mathform.geometry.Circle.area(5));
+```
+or import specific modules
+```javascript
+import { helpers, geometry } from "mathform";
+console.log(helpers.format(geometry.Circle.area(5)));
+```
 
 _For more examples, please refer to the [Documentation](https://adiama.github.io/mathform/)_
 
@@ -147,7 +161,7 @@ Project Link: [https://github.com/adiama/mathform](https://github.com/adiama/mat
 ## Acknowledgments
 
 * README [template](https://github.com/othneildrew/Best-README-Template)
-* repo structure heavily influenced by [glMatrix](https://github.com/toji/gl-matrix)
+* some repo structure influenced by [glMatrix](https://github.com/toji/gl-matrix)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

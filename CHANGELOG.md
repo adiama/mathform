@@ -1,6 +1,8 @@
 # Changelog
 
-## v0.0.2-alpha.0
+## v0.0.2
+
+- [m] modified package.json scripts and project files for publishing
 
 ## v0.0.1
 

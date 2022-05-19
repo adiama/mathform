@@ -2,7 +2,7 @@
 /*!
 @fileoverview mathform - A collection of mathematical formulas, constants and algorithms
 @author Alexandros Diamantonis <asdiamantonis@gmail.com>
-@version 0.0.2
+@version 0.0.3
 
 Copyright (c) 2022, Alexandros Diamantonis <asdiamantonis@gmail.com>.
 

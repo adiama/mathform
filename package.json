@@ -18,6 +18,7 @@
       "require": "./dist/mathform.min.cjs"
     }
   },
+  "files": ["dist/*"],
   "scripts": {
     "test": "mocha test/test.js test/*.test.js",
     "docs": "jsdoc --configure jsdoc.json",
@@ -29,8 +30,8 @@
     "bump:major": "npm version major",
     "bump:minor": "npm version minor",
     "bump:patch": "npm version patch",
-    "publish": "npm publish dist --access public",
-    "publish:dry": "npm publish dist --access public --dry-run",
+    "publish": "npm publish --access public",
+    "publish:dry": "npm publish --access public --dry-run",
     "link": "npm link ./dist",
     "serve:docs": "http-server ./docs/mathform -p 8082"
   },

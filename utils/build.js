@@ -16,3 +16,4 @@ fs.writeFileSync('dist/package.json', JSON.stringify(pkg, null, 2));
 
 copyFileSync('README.md', 'dist/README.md');
 copyFileSync('LICENSE.md', 'dist/LICENSE.md');
+copyFileSync('CHANGELOG.md', 'dist/LICENSE.md');
